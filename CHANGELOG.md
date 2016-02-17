@@ -1,5 +1,9 @@
 
 #### [Current]
+ * 2016-02-16 [791f5d1](../../commit/791f5d1) - __(Salahutdinov Dmitry)__ feature: базовый счетчик денормализации
+
+#### v0.0.3
+ * 2016-02-16 [b3d0a71](../../commit/b3d0a71) - __(Salahutdinov Dmitry)__ Release 0.0.3
  * 2016-02-08 [add602d](../../commit/add602d) - __(Sergey Kucher)__ feature: waiting orders count https://jira.railsc.ru/browse/PC4-16549
 
 #### v0.0.2
