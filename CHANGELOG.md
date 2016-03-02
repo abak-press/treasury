@@ -1,5 +1,10 @@
 
 #### [Current]
+ * 2016-03-01 [863782b](../../commit/863782b) - __(Sergey Kucher)__ fix: customer new orders counter - fix treasury/processors/counters module in case when nothing changing
+ * 2016-03-02 [07aac88](../../commit/07aac88) - __(Semyon Pupkov)__ feature: add helper for stub plugin into tests
+
+#### v0.0.5
+ * 2016-03-02 [8475cac](../../commit/8475cac) - __(Salahutdinov Dmitry)__ Release 0.0.5
  * 2016-03-01 [8375263](../../commit/8375263) - __(Semyon Pupkov)__ feature: add base field and translators
 
 #### v0.0.4
