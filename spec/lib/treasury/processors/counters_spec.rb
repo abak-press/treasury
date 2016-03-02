@@ -4,7 +4,7 @@ RSpec.describe ::Treasury::Processors::Counters do
   let(:processor) { processor_class.new }
 
   let(:processor_class) do
-    Class.new do
+    Class.new(::Treasury::Processors::Base) do
       include ::Treasury::Processors::Counters
       counters :count
 
@@ -34,13 +34,13 @@ RSpec.describe ::Treasury::Processors::Counters do
     it do
       expect(processor).not_to receive(:incremented_current_value)
       expect(processor).not_to receive(:decremented_current_value)
+      expect(result).to be_nil
     end
   end
 
   before do
     allow(processor).to receive(:incremented_current_value)
     allow(processor).to receive(:decremented_current_value)
-    allow(processor).to receive(:result_row)
 
     processor.instance_variable_set :@event, event
   end
@@ -107,6 +107,8 @@ RSpec.describe ::Treasury::Processors::Counters do
   end
 
   describe "#process_insert" do
+    let(:result) { processor.process_insert }
+
     context "when event is satisfied" do
       let(:event) { double satisfied }
       it { expect(processor).to receive(:incremented_current_value).with(:count) }
@@ -121,6 +123,8 @@ RSpec.describe ::Treasury::Processors::Counters do
   end
 
   describe "#process_update" do
+    let(:result) { processor.process_update }
+
     context "when event is satisfied and wasn't counted" do
       let(:event) { double satisfied.merge(not_counted) }
       it { expect(processor).to receive(:incremented_current_value).with(:count) }
@@ -145,6 +149,8 @@ RSpec.describe ::Treasury::Processors::Counters do
   end
 
   describe "#process_delete" do
+    let(:result) { processor.process_delete }
+
     context "when event was counted" do
       let(:event) { double counted }
       it { expect(processor).to receive(:decremented_current_value).with(:count) }
