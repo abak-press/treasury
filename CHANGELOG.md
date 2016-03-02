@@ -1,5 +1,9 @@
 
 #### [Current]
+ * 2016-03-01 [8375263](../../commit/8375263) - __(Semyon Pupkov)__ feature: add base field and translators
+
+#### v0.0.4
+ * 2016-02-17 [d16dde0](../../commit/d16dde0) - __(Salahutdinov Dmitry)__ Release 0.0.4
  * 2016-02-16 [791f5d1](../../commit/791f5d1) - __(Salahutdinov Dmitry)__ feature: базовый счетчик денормализации
 
 #### v0.0.3

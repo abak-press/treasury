@@ -68,7 +68,7 @@ module Treasury
         fields = counters_list.each_with_object({}) do |counter, hash|
           hash[counter] = incremented_current_value(counter) if send "#{counter}_satisfied?"
         end
-        result_row fields
+        result_row(fields) if fields.present?
       end
 
       def process_update
@@ -79,14 +79,14 @@ module Treasury
             hash[counter] = decremented_current_value(counter) if send "#{counter}_was_counted?"
           end
         end
-        result_row fields
+        result_row(fields) if fields.present?
       end
 
       def process_delete
         fields = counters_list.each_with_object({}) do |counter, hash|
           hash[counter] = decremented_current_value(counter) if send "#{counter}_was_counted?"
         end
-        result_row fields
+        result_row(fields) if fields.present?
       end
     end
   end
