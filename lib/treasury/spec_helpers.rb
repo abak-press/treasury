@@ -15,6 +15,9 @@ module Treasury
           end
         end
       end
+
+      class Base
+      end
     end
 
     module Fields

@@ -9,4 +9,4 @@ end
 require 'combustion'
 Combustion.initialize!
 
-require_relative 'internal/lib/core_denormalization/processors/base'
+Treasury::SpecHelpers.stub_core_denormalization
