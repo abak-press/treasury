@@ -3,6 +3,8 @@
 module Treasury
   module Processors
     class Base < ::CoreDenormalization::Processors::Base
+      attr_accessor :object
+      
       def current_value(field_name = nil)
         object_value(@object, field_name)
       end
@@ -23,6 +25,10 @@ module Treasury
 
       def result_row(value)
         {@object => form_value(value)}
+      end
+
+      def no_action
+        nil
       end
     end
   end
