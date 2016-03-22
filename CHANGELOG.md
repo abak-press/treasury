@@ -1,5 +1,11 @@
 
 #### [Current]
+ * 2016-03-15 [58b58a9](../../commit/58b58a9) - __(Salahutdinov Dmitry)__ Merge remote-tracking branch 'upstream/master' into pc/release/20160303
+ * 2016-03-10 [9db4360](../../commit/9db4360) - __(Sergey Kucher)__ feature: create manager orders counter - current value and object value for processors base
+ * 2016-02-24 [7e86520](../../commit/7e86520) - __(Sergey Kucher)__ feature: company manager new dialog messages counter - move hash serializer and operations from cosmos-treasury - step for increment/decrement hash values
+
+#### v0.2.0
+ * 2016-03-11 [d464026](../../commit/d464026) - __(Salahutdinov Dmitry)__ Release 0.2.0
  * 2016-03-11 [644a080](../../commit/644a080) - __(Sergey Kucher)__ chore: move methods from plugin into gem for processors base - #object - #no_action https://jira.railsc.ru/browse/PC4-15968
  * 2016-03-02 [2d4cf6f](../../commit/2d4cf6f) - __(Semyon Pupkov)__ chore: use spec_helper instead internal class
 
