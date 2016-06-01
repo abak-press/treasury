@@ -30,6 +30,10 @@ RSpec.describe Treasury::Fields::Extractor do
       it { expect { class_with_extractor.extract_object(object: {another_object: 1}) }.to raise_error(ArgumentError) }
     end
 
+    context 'when call alias method' do
+      it { expect(class_with_extractor.extract_user(object: {user_id: 1})).to eq 1 }
+    end
+
     it 'return object id' do
       user = double(:user, id: 1)
 

@@ -34,6 +34,7 @@ module Treasury
 
       def extract_attribute_name(name)
         class_attribute :attribute_name, instance_writer: false
+        singleton_class.send(:alias_method, "extract_#{name}".to_sym, :extract_object)
 
         self.attribute_name = name
       end
