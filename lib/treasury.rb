@@ -6,5 +6,5 @@ require 'treasury/version'
 require 'treasury/engine'
 
 module Treasury
-  # Your code goes here...
+  LIST_DELIMITER = ','.freeze
 end
