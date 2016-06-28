@@ -70,6 +70,7 @@ module Treasury
           queue = Denormalization::Models::Queue.create! do |q|
             q.name = consumer_name
             q.table_name = processor[:table_name]
+            q.db_link_class = processor[:db_link_class]
             q.trigger_code = q.generate_trigger(processor[:trigger])
           end
 
