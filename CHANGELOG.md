@@ -1,5 +1,14 @@
 
 #### [Current]
+ * 2016-06-28 [5bacff5](../../commit/5bacff5) - __(vadshalamov)__ feature: add Treasury::LIST_DELIMITER
+ * 2016-06-28 [1c93807](../../commit/1c93807) - __(vadshalamov)__ feature: add db_link_class to new field helper
+ * 2016-06-01 [a314d41](../../commit/a314d41) - __(Semyon Pupkov)__ feature: add helper for create new field in migration
+ * 2016-06-01 [ddfa482](../../commit/ddfa482) - __(vadshalamov)__ feature: generate alias_method
+ * 2016-06-01 [8768c09](../../commit/8768c09) - __(vadshalamov)__ fix tests
+ * 2016-06-01 [dd17b6b](../../commit/dd17b6b) - __(vadshalamov)__ feature: add common extractor
+
+#### v0.3.0
+ * 2016-03-22 [b261c86](../../commit/b261c86) - __(Salahutdinov Dmitry)__ Release 0.3.0
  * 2016-03-15 [58b58a9](../../commit/58b58a9) - __(Salahutdinov Dmitry)__ Merge remote-tracking branch 'upstream/master' into pc/release/20160303
  * 2016-03-10 [9db4360](../../commit/9db4360) - __(Sergey Kucher)__ feature: create manager orders counter - current value and object value for processors base
  * 2016-02-24 [7e86520](../../commit/7e86520) - __(Sergey Kucher)__ feature: company manager new dialog messages counter - move hash serializer and operations from cosmos-treasury - step for increment/decrement hash values
