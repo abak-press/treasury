@@ -1,5 +1,10 @@
 
 #### [Current]
+ * 2016-07-22 [de5a304](../../commit/de5a304) - __(Semyon Pupkov)__ feature: add denormalization errors
+ * 2016-07-22 [dea3014](../../commit/dea3014) - __(Semyon Pupkov)__ feature: add NoRequireInitialization module
+
+#### v0.4.0
+ * 2016-06-28 [bfaf31f](../../commit/bfaf31f) - __(Semyon Pupkov)__ Release 0.4.0
  * 2016-06-28 [5bacff5](../../commit/5bacff5) - __(vadshalamov)__ feature: add Treasury::LIST_DELIMITER
  * 2016-06-28 [1c93807](../../commit/1c93807) - __(vadshalamov)__ feature: add db_link_class to new field helper
  * 2016-06-01 [a314d41](../../commit/a314d41) - __(Semyon Pupkov)__ feature: add helper for create new field in migration
