@@ -1,5 +1,4 @@
 require 'bundler/setup'
-require 'pry-debugger'
 
 require 'simplecov'
 SimpleCov.start do
