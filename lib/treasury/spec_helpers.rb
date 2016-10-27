@@ -10,13 +10,13 @@ module Treasury
 
       module User
         class Base
-          def interesting_event?
-            true
-          end
         end
       end
 
       class Base
+        def interesting_event?
+          true
+        end
       end
     end
 
