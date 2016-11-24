@@ -6,6 +6,6 @@ SimpleCov.start do
 end
 
 require 'combustion'
-Combustion.initialize!
+Combustion.initialize! :action_mailer
 
 Treasury::SpecHelpers.stub_core_denormalization
