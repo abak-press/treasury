@@ -18,6 +18,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = %w(lib)
 
   spec.add_runtime_dependency 'rails', '>= 3.1.12', '< 4.1'
+  spec.add_runtime_dependency 'daemons', '>= 1.1.9'
 
   spec.add_development_dependency 'rspec', '>= 3.1'
   spec.add_development_dependency 'simplecov'
