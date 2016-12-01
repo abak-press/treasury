@@ -50,8 +50,8 @@ module Treasury
       private
 
       def create_denormalization_field
-        Denormalization::Models::Field.transaction do
-          field_record = Denormalization::Models::Field.create! do |f|
+        Treasury::Models::Field.transaction do
+          field_record = Treasury::Models::Field.create! do |f|
             f.title = field[:title] || field[:class].underscore.tr('/', '_')
             f.group = group
             f.field_class = field[:class]
@@ -67,14 +67,14 @@ module Treasury
             f.oid = 0
           end
 
-          queue = Denormalization::Models::Queue.create! do |q|
+          queue = Treasury::Models::Queue.create! do |q|
             q.name = consumer_name
             q.table_name = processor[:table_name]
             q.db_link_class = processor[:db_link_class]
             q.trigger_code = q.generate_trigger(processor[:trigger])
           end
 
-          Denormalization::Models::Processor.create! do |f|
+          Treasury::Models::Processor.create! do |f|
             f.field = field_record
             f.queue = queue
             f.processor_class = processor[:class]
@@ -88,16 +88,16 @@ module Treasury
       def delete_denormalization_field
         return if Rails.env.test?
 
-        Denormalization::Models::Processor.find_by_consumer_name(consumer_name).try(:destroy)
-        Denormalization::Models::Queue.find_by_name(consumer_name).try(:destroy)
-        Denormalization::Models::Field.find_by_field_class(field[:class]).try(:destroy)
+        Treasury::Models::Processor.find_by_consumer_name(consumer_name).try(:destroy)
+        Treasury::Models::Queue.find_by_name(consumer_name).try(:destroy)
+        Treasury::Models::Field.find_by_field_class(field[:class]).try(:destroy)
       end
 
       def find_or_create_worker
         worker = respond_to?(:worker) ? worker : :common
 
-        Denormalization::Models::Worker.find_by_name(worker) ||
-          Denormalization::Models::Worker.create!(name: worker, active: true)
+        Treasury::Models::Worker.find_by_name(worker) ||
+          Treasury::Models::Worker.create!(name: worker, active: true)
       end
 
       def consumer_name
@@ -107,11 +107,11 @@ module Treasury
       def storage(name)
         case name
         when :redis
-          'CoreDenormalization::Storage::Redis::Multi'
+          'Treasury::Storage::Redis::Multi'
         when :db
-          'CoreDenormalization::Storage::PostgreSQL::Db'
+          'Treasury::Storage::PostgreSQL::Db'
         when :pgq
-          'CoreDenormalization::Storage::PostgreSQL::PgqProducer'
+          'Treasury::Storage::PostgreSQL::PgqProducer'
         else
           raise 'Unexpected storage'
         end

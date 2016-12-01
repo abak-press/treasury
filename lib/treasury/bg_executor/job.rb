@@ -54,15 +54,6 @@ module Treasury
         end
 
         # указать, что не нужно вести трассировку сессии для NewRelic
-        def acts_as_no_trace
-          self.no_trace_job = true
-        end
-
-        def acts_as_no_trace?
-          !!no_trace_job
-        end
-
-        # указать, что не нужно вести трассировку сессии для NewRelic
         def acts_as_no_cancel
           self.no_cancel_job = true
         end

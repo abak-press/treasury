@@ -3,3 +3,4 @@
 --format progress
 --order random
 --backtrace
+--require ./spec/spec_helper
