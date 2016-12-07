@@ -19,9 +19,21 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'rails', '>= 3.1.12', '< 4.1'
   spec.add_runtime_dependency 'daemons', '>= 1.1.9'
+  spec.add_runtime_dependency 'class_logger', '>= 1.0.1'
+  spec.add_runtime_dependency 'callbacks_rb', '>= 0.0.1'
+  spec.add_runtime_dependency 'redis', '>= 3.2.1'
+  spec.add_runtime_dependency 'pg', '>= 0.16'
+  spec.add_runtime_dependency 'pg_tools', '>= 1.2.0'
+  spec.add_runtime_dependency 'string_tools', '>= 0.6.1'
+  spec.add_runtime_dependency 'resque-integration', '>= 1.9'
 
-  spec.add_development_dependency 'rspec', '>= 3.1'
+  spec.add_development_dependency 'rspec-rails'
+  spec.add_development_dependency 'factory_girl_rails'
+  spec.add_development_dependency 'apress-rspec'
   spec.add_development_dependency 'simplecov'
   spec.add_development_dependency 'combustion', '>= 0.5.3'
   spec.add_development_dependency 'appraisal'
+  spec.add_development_dependency 'mock_redis'
+  spec.add_development_dependency 'rspec-given'
+  spec.add_development_dependency 'shoulda-matchers'
 end

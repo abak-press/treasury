@@ -5,7 +5,8 @@ module Treasury
                   :bge_max_tries_on_fail,
                   :bge_namespace,
                   :bge_queue_timeout,
-                  :bge_daemon_options
+                  :bge_daemon_options,
+                  :job_error_notifications
 
     def initialize
       self.bge_concurrency = 4

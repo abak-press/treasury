@@ -15,4 +15,4 @@ mkmf.log
 /.rvmrc
 /.idea/
 gemfiles/
-internal/log
+spec/internal/log

@@ -1,5 +1,4 @@
 # coding: utf-8
-require 'spec_helper'
 
 describe ::Treasury::Processors::HashOperations do
   let(:dummy_class) do

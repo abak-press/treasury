@@ -1,7 +1,6 @@
-require 'spec_helper'
-
-RSpec.describe ::Treasury::Processors::Counters do
-  let(:processor) { processor_class.new }
+describe ::Treasury::Processors::Counters do
+  let(:queue) { build 'denormalization/queue' }
+  let(:processor) { processor_class.new(build('denormalization/processor', queue: queue)) }
 
   let(:processor_class) do
     Class.new(::Treasury::Processors::Base) do
@@ -71,7 +70,7 @@ RSpec.describe ::Treasury::Processors::Counters do
 
   context 'using raw data' do
     let(:processor_class) do
-      Class.new do
+      Class.new(::Treasury::Processors::Base) do
         include ::Treasury::Processors::Counters
         counters :count, fast_parsing: true
 
