@@ -1,4 +1,8 @@
 namespace :bge do
+  task run: :environment do
+    Treasury::BgExecutor.daemonize("run")
+  end
+
   task start: :environment do
     Treasury::BgExecutor.daemonize("start")
   end
