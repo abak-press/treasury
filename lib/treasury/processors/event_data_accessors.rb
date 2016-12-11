@@ -1,12 +1,7 @@
 module Treasury
   module Processors
-    module DataAccessors
+    module EventDataAccessors
       extend ActiveSupport::Concern
-
-      included do
-        class_attribute :data_fields
-        self.data_fields = []
-      end
 
       module ClassMethods
         # Определяет акцессоры для доступа к переданным в процессор данным
@@ -15,9 +10,9 @@ module Treasury
         # Например:
         #
         #  class Cosmos::Treasury::Processors::Company::NewOrders
-        #    include ::Treasury::Processors::DataAccessors
+        #    include ::Treasury::Processors::EventDataAccessors
         #
-        #    define_fields :user_id, order_type, fast_parsing: true
+        #    event_data_fields :user_id, order_type, fast_parsing: true
         #  end
         #
         # Аргументы:
@@ -29,7 +24,7 @@ module Treasury
         #   доступные методы:
         #     user_id, prev_user_id, user_id_changed?
         #     order_type, prev_order_type, order_type_changed?
-        def define_fields(*args)
+        def event_data_fields(*args)
           options = args.extract_options!
           data_field_names = Array.wrap args
 
@@ -37,22 +32,17 @@ module Treasury
             options.fetch(:fast_parsing, false) ? [:raw_data, :raw_prev_data] : [:data, :prev_data]
 
           data_field_names.each do |field_name|
-            class_eval <<-RUBY
-              def #{field_name}
-                event.#{data_method}.fetch(:#{field_name})
-              end
+            define_method(field_name) do
+              event.send(data_method).fetch(field_name)
+            end
+            define_method("prev_#{field_name}") do
+              event.send(prev_data_method).fetch(field_name)
+            end
 
-              def prev_#{field_name}
-                event.#{prev_data_method}.fetch(:#{field_name})
-              end
-
-              def #{field_name}_changed?
-                #{field_name} != prev_#{field_name}
-              end
-            RUBY
+            define_method("#{field_name}_changed?") do
+              self.send(field_name) != self.send("prev_#{field_name}")
+            end
           end
-
-          data_fields.concat data_field_names
         end
       end
     end
