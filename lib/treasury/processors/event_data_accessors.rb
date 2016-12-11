@@ -40,7 +40,7 @@ module Treasury
             end
 
             define_method("#{field_name}_changed?") do
-              self.send(field_name) != self.send("prev_#{field_name}")
+              send(field_name) != send("prev_#{field_name}")
             end
           end
         end
