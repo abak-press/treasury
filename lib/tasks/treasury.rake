@@ -14,6 +14,10 @@ namespace :treasury do
 
   task start: :restart
 
+  namespace :supervisor do
+    task stop: "denormalization:supervisor:stop"
+  end
+
   namespace :bge do
     task run: :environment do
       Treasury::BgExecutor.daemonize("run")
