@@ -1,4 +1,11 @@
 module CoreDenormalization
+  module Models
+    Field = ::Treasury::Models::Field
+    Processor = ::Treasury::Models::Processor
+    Queue = ::Treasury::Models::Queue
+    Worker = ::Treasury::Models::Worker
+  end
+
   module Fields
     module Company
       Base = ::Treasury::Fields::Company::Base
@@ -59,6 +66,13 @@ module CoreDenormalization
 end
 
 module Denormalization
+  module Models
+    Field = ::Treasury::Models::Field
+    Processor = ::Treasury::Models::Processor
+    Queue = ::Treasury::Models::Queue
+    Worker = ::Treasury::Models::Worker
+  end
+
   module Fields
     module Company
       Base = ::Treasury::Fields::Company::Base
