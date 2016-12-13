@@ -63,6 +63,7 @@ module CoreDenormalization
   end
 
   ROOT_REDIS_KEY = ::Treasury::ROOT_REDIS_KEY
+  ReinitializeObjectJob = ::Treasury::ReinitializeObjectJob
 end
 
 module Denormalization

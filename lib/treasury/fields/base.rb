@@ -470,6 +470,14 @@ module Treasury
         ActiveRecord::Base.connection
       end
 
+      # Public: Перзапись объекта
+      #
+      # Должно быть перекрыто для нужного поля.
+      #
+      def self.reinitialize_object(object_id)
+        raise NotImplementedError
+      end
+
       private
 
       attr_accessor :state_updated_at
