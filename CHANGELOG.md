@@ -1,5 +1,12 @@
 
 #### [Current]
+ * 2016-12-12 [304296b](../../commit/304296b) - __(Salahutdinov Dmitry)__ feature: event data readers (#28)
+ * 2016-10-26 [48d84fa](../../commit/48d84fa) - __(Semyon Pupkov)__ fix: interesting_event meth should be in base processor
+ * 2016-10-26 [8926025](../../commit/8926025) - __(Semyon Pupkov)__ feature: add methods to user processor form project
+ * 2016-10-26 [4408b20](../../commit/4408b20) - __(Semyon Pupkov)__ chore: add drone, docker and dip
+
+#### v0.5.0
+ * 2016-07-22 [fa71f99](../../commit/fa71f99) - __(Semyon Pupkov)__ Release 0.5.0
  * 2016-07-22 [de5a304](../../commit/de5a304) - __(Semyon Pupkov)__ feature: add denormalization errors
  * 2016-07-22 [dea3014](../../commit/dea3014) - __(Semyon Pupkov)__ feature: add NoRequireInitialization module
 
