@@ -71,6 +71,14 @@ module Treasury
         end
       end
 
+      def destroy_pgq_queue
+        work_connection.transaction do
+          processors.each(&:unregister_consumer)
+          pgq_drop_queue
+          drop_pgq_trigger
+        end
+      end
+
       def recreate_trigger(lock_table = true)
         return unless table_name.present?
 
@@ -161,14 +169,6 @@ module Treasury
 
       def self.quote(text)
         ActiveRecord::Base.connection.quote(text)
-      end
-
-      def destroy_pgq_queue
-        work_connection.transaction do
-          processors.each(&:unregister_consumer)
-          pgq_drop_queue
-          drop_pgq_trigger
-        end
       end
     end
   end
