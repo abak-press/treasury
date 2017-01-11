@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe ::Treasury::Processors::EventDataAccessors do
-  let(:processor) { processor_class.new }
+  let(:processor) { processor_class.new(build_stubbed('denormalization/processor')) }
 
   before { allow(processor).to receive(:event).and_return(event_data) }
 

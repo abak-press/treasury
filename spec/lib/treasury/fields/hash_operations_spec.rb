@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-RSpec.describe Treasury::Fields::HashOperations do
+describe Treasury::Fields::HashOperations do
   let(:hash_field_class) do
     Class.new { include Treasury::Fields::HashOperations }
   end

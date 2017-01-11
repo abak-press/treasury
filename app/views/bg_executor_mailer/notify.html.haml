@@ -1,0 +1,6 @@
+= @message
+
+- if @exception.present?
+  %p Exception: #{@exception.message}
+  %div
+    = @exception.backtrace.join("<br/>").html_safe

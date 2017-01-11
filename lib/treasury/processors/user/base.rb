@@ -3,7 +3,7 @@
 module Treasury
   module Processors
     module User
-      class Base < Treasury::Processors::Base
+      class Base < ::Treasury::Processors::Base
         alias :user_id= :object=
         alias :user_id  :object
 

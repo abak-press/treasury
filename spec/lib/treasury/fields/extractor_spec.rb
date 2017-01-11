@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-RSpec.describe Treasury::Fields::Extractor do
+describe Treasury::Fields::Extractor do
   let(:class_with_extractor) do
     Class.new do
       extend Treasury::Fields::Extractor
