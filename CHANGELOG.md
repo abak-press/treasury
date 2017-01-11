@@ -1,5 +1,15 @@
 
 #### [Current]
+ * 2017-01-11 [b09698b](../../commit/b09698b) - __(Semyon Pupkov)__ chore: freeze nokogiri version for ruby 1.9
+ * 2016-12-20 [2535ec0](../../commit/2535ec0) - __(vadshalamov)__ chore: fix Treasury::Processors::EventDataAccessors tests
+ * 2016-12-13 [218eaba](../../commit/218eaba) - __(vadshalamov)__ feature: move ReinitializeObjectJob into gem
+ * 2016-12-13 [fd12ed8](../../commit/fd12ed8) - __(Vadim Shalamov)__ fix: add Models module to backwards (#29)
+ * 2016-12-13 [7b7573f](../../commit/7b7573f) - __(Vadim Shalamov)__ feature: add bge:run task for docker (#27)
+ * 2016-12-01 [5d625a2](../../commit/5d625a2) - __(vadshalamov)__ feature: move core_demormalization into gem
+ * 2016-11-24 [3adddec](../../commit/3adddec) - __(vadshalamov)__ feature: move bg_executor plugin into gem
+
+#### v0.6.0
+ * 2016-12-15 [4114d25](../../commit/4114d25) - __(Semyon Pupkov)__ Release 0.6.0
  * 2016-12-12 [304296b](../../commit/304296b) - __(Salahutdinov Dmitry)__ feature: event data readers (#28)
  * 2016-10-26 [48d84fa](../../commit/48d84fa) - __(Semyon Pupkov)__ fix: interesting_event meth should be in base processor
  * 2016-10-26 [8926025](../../commit/8926025) - __(Semyon Pupkov)__ feature: add methods to user processor form project
