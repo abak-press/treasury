@@ -192,7 +192,7 @@ module Treasury
       # Returns Array or nil.
       #
       def objects_for_reset
-        return nil unless respond_to?(:reset_statement)
+        return nil unless respond_to?(:reset_statement, true)
 
         logger.info "Запрашиваю список объектов для сброса:\r\n #{reset_statement}"
         work_connection.select_values(reset_statement)
