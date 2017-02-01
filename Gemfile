@@ -9,6 +9,7 @@ if RUBY_VERSION < '2'
   gem 'pg', '<= 0.18.4'
   gem 'shoulda-matchers', '< 3.0.0'
   gem 'nokogiri', '< 1.7.0'
+  gem 'public_suffix', '< 1.5.0'
 else
   gem 'pry-byebug'
   gem 'test-unit'
