@@ -1,5 +1,10 @@
 
 #### [Current]
+ * 2017-02-07 [83f611a](../../commit/83f611a) - __(Semyon Pupkov)__ Release 1.0.1
+ * 2017-02-01 [7286ff8](../../commit/7286ff8) - __(Mikhail Nelaev)__ fix: respond_to? doesn't search for protected methods on ruby >= 2
+
+#### v1.0.0
+ * 2017-01-11 [17f9df4](../../commit/17f9df4) - __(Semyon Pupkov)__ Release 1.0.0
  * 2017-01-11 [b09698b](../../commit/b09698b) - __(Semyon Pupkov)__ chore: freeze nokogiri version for ruby 1.9
  * 2016-12-20 [2535ec0](../../commit/2535ec0) - __(vadshalamov)__ chore: fix Treasury::Processors::EventDataAccessors tests
  * 2016-12-13 [218eaba](../../commit/218eaba) - __(vadshalamov)__ feature: move ReinitializeObjectJob into gem
