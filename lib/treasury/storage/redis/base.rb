@@ -8,8 +8,8 @@ module Treasury
       # а именно невозможности чтения данных, пока выполняется транзакция,
       # используется 2 соединения с Redis - для чтения и записи
       class Base < Treasury::Storage::Base
-        RESET_FIELDS_BATCH_SIZE = 5000
-        RESET_FIELDS_BATCH_PAUSE = Rails.env.staging? || !Rails.env.production? ? 0.seconds : 3.seconds
+        RESET_FIELDS_BATCH_SIZE = 1000
+        RESET_FIELDS_BATCH_PAUSE = Rails.env.staging? || !Rails.env.production? ? 0.seconds : 0.seconds
 
         self.default_reset_strategy = :delete
 
@@ -86,11 +86,16 @@ module Treasury
 
         def reset_hash_fields(hash_key, fields)
           fields = fields.map { |field| prepare_field(field) }
+          cursor = 0
 
-          read_session.keys(hash_key).in_groups_of(RESET_FIELDS_BATCH_SIZE, false) do |group|
+          loop do
+            cursor, keys = read_session.scan(cursor, match: hash_key, count: RESET_FIELDS_BATCH_SIZE)
+
             write_session.pipelined do
-              group.each { |key| write_session.hdel(key, fields) }
+              keys.each { |key| write_session.hdel(key, fields) }
             end
+
+            break if cursor == '0'
             sleep(RESET_FIELDS_BATCH_PAUSE)
           end
         end
