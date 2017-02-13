@@ -3,13 +3,12 @@ require 'bundler/setup'
 require 'treasury'
 
 require 'simplecov'
-require 'mock_redis'
 require 'combustion'
 require "factory_girl_rails"
 require 'shoulda-matchers'
 
 SimpleCov.start do
-  minimum_coverage 70
+  minimum_coverage 73.5
 end
 
 Combustion.initialize! :action_mailer, :active_record
@@ -28,4 +27,7 @@ RSpec.configure do |config|
 
   config.filter_run_including focus: true
   config.run_all_when_everything_filtered = true
+
+  config.before(:each) { Treasury.configuration.redis.flushall }
+  config.after(:each) { Treasury.configuration.redis.flushall }
 end

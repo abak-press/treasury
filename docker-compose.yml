@@ -12,6 +12,7 @@ services:
     command: bash
     depends_on:
       - db
+      - redis
     volumes:
       - .:/app
       - ssh_data:/ssh:ro
@@ -20,6 +21,10 @@ services:
     image: abakpress/postgres:$POSTGRES_IMAGE_TAG
     environment:
       - POSTGRES_DB=docker
+
+  redis:
+      image: redis:3-alpine
+      command: 'redis-server --appendonly yes --bind 0.0.0.0'
 
 volumes:
   ssh_data:
