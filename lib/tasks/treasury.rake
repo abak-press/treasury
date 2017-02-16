@@ -65,5 +65,10 @@ namespace :treasury do
     task drop_triggers: :environment do
       Apress::Utils::Triggers.drop_triggers(:trigger_pattern => "#{Treasury::Models::Queue::TRIGGER_PREFIX}*")
     end
+
+    desc 'Пересоздает очереди, триггеры и подписки для всех процессоров'
+    task recreate_queues: :environment do
+      Treasury::Models::Queue.all.each(&:recreate!)
+    end
   end
 end

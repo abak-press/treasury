@@ -63,6 +63,7 @@ module CoreDenormalization
   end
 
   ROOT_REDIS_KEY = ::Treasury::ROOT_REDIS_KEY
+  ROOT_LOGGER_DIR = ::Treasury::ROOT_LOGGER_DIR
   ReinitializeObjectJob = ::Treasury::ReinitializeObjectJob
 end
 
@@ -131,6 +132,7 @@ module Denormalization
   end
 
   ROOT_REDIS_KEY = ::Treasury::ROOT_REDIS_KEY
+  ROOT_LOGGER_DIR = ::Treasury::ROOT_LOGGER_DIR
 end
 
 Pgq = ::Treasury::Pgq
