@@ -114,6 +114,15 @@ module Treasury
         "q_#{name}"
       end
 
+      # Public: Пересоздает очередь, триггер и переподписывает связанные
+      # обработчики.
+      #
+      # Returns nothing.
+      def recreate!
+        destroy_pgq_queue
+        processors.each(&:subscribe!)
+      end
+
       protected
 
       def lock_table!
