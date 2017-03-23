@@ -7,8 +7,8 @@ module Treasury
 
     REFRESH_FIELDS_LIST_PERIOD     = Rails.env.staging? || !Rails.env.production? ? 1.minute : 1.minute
     IDLE_MAX_LAG                   = 5.minutes
-    PROCESS_LOOP_NORMAL_SLEEP_TIME = 0.05.seconds
-    PROCESS_LOOP_IDLE_SLEEP_TIME   = 5.seconds
+    PROCESS_LOOP_NORMAL_SLEEP_TIME = Rails.env.test? ? 0 : 0.05.seconds
+    PROCESS_LOOP_IDLE_SLEEP_TIME   = Rails.env.test? ? 0 : 5.seconds
 
     LOGGER_FILE_NAME = "#{ROOT_LOGGER_DIR}/workers/%{name}_worker".freeze
 
@@ -42,7 +42,9 @@ module Treasury
         clear_last_error
         while true
           break unless check_terminate
-          idle(process_fields)
+          processed = process_fields
+          break if !processed && Rails.env.test?
+          idle(processed)
         end
       rescue Exception => e
         log_error(e)
@@ -100,7 +102,7 @@ module Treasury
         end
       end
 
-      idle &&= total_lag < IDLE_MAX_LAG
+      idle &&= total_lag < IDLE_MAX_LAG unless Rails.env.test?
       !idle
     end
 
