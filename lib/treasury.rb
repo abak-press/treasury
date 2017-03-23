@@ -5,6 +5,7 @@ require 'active_support'
 require 'treasury/version'
 require 'treasury/engine'
 require 'treasury/bg_executor'
+require 'treasury/configuration'
 
 require 'resque-integration'
 require 'string_tools'
