@@ -1,9 +1,10 @@
 version: '1'
 
 environment:
-  DOCKER_RUBY_VERSION: 1.9.3
-  RUBY_IMAGE_TAG: 1.9.3-2
-  POSTGRES_IMAGE_TAG: 9.3
+  DOCKER_RUBY_VERSION: 2.2
+  RUBY_IMAGE_TAG: 2.2-latest
+  POSTGRES_IMAGE_TAG: 9.3-latest
+  REDIS_IMAGE_TAG: 3-alpine
   COMPOSE_FILE_EXT: development
   RAILS_ENV: test
   APRESS_GEMS_CREDENTIALS: ""
@@ -36,7 +37,6 @@ interaction:
 provision:
   - docker volume create --name bundler_data
   - dip bundle config --local https://gems.railsc.ru/ ${APRESS_GEMS_CREDENTIALS}
+  - dip clean
   - dip bundle install
-  - dip sh mkdir -p gemfiles/.bundle
-  - dip sh ln -sf ../../.bundle/config /app/gemfiles/.bundle/config
   - dip appraisal install

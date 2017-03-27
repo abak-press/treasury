@@ -17,6 +17,8 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = %w(lib)
 
+  spec.metadata['allowed_push_host'] = 'https://gems.railsc.ru'
+
   spec.add_runtime_dependency 'rails', '>= 3.1.12', '< 4.1'
   spec.add_runtime_dependency 'daemons', '>= 1.1.9'
   spec.add_runtime_dependency 'class_logger', '>= 1.0.1'
@@ -35,4 +37,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'appraisal'
   spec.add_development_dependency 'rspec-given'
   spec.add_development_dependency 'shoulda-matchers'
+  spec.add_development_dependency 'test-unit'
+  spec.add_development_dependency 'pry-byebug'
 end

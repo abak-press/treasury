@@ -6,6 +6,7 @@ require 'simplecov'
 require 'combustion'
 require "factory_girl_rails"
 require 'shoulda-matchers'
+require 'pry-byebug'
 
 SimpleCov.start do
   minimum_coverage 73.5
