@@ -1,6 +1,6 @@
 # coding: utf-8
 
-describe Treasury::Models::Field do
+describe Treasury::Models::Field, type: :model do
   context 'when check db structure' do
     it { is_expected.to have_db_column(:title).of_type(:string).with_options(limit: 128, null: false) }
     it { is_expected.to have_db_column(:group).of_type(:string).with_options(limit: 128, null: false) }

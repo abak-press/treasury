@@ -130,7 +130,7 @@ describe ::Treasury::Processors::Base do
     end
 
     it 'должен вызывать метод API pgq_next_batch и транслировать родительское исключение, если не обработано' do
-      allow(ActiveRecord::Base).to receive(:pgq_next_batch).and_raise(ActiveRecord::StatementInvalid)
+      allow(ActiveRecord::Base).to receive(:pgq_next_batch).and_raise(ActiveRecord::StatementInvalid.new(''))
       expect { subject.send(:get_batch) }.to raise_error(ActiveRecord::StatementInvalid)
     end
   end

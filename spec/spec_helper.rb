@@ -9,7 +9,7 @@ require 'shoulda-matchers'
 require 'pry-byebug'
 
 SimpleCov.start do
-  minimum_coverage 73.5
+  minimum_coverage 73
 end
 
 Combustion.initialize! :action_mailer, :active_record
@@ -31,4 +31,14 @@ RSpec.configure do |config|
 
   config.before(:each) { Treasury.configuration.redis.flushall }
   config.after(:each) { Treasury.configuration.redis.flushall }
+end
+
+if Rails::VERSION::MAJOR >= 4
+  Shoulda::Matchers.configure do |config|
+    config.integrate do |with|
+      with.test_framework :rspec
+
+      with.library :rails
+    end
+  end
 end
