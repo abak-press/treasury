@@ -446,7 +446,7 @@ module Treasury
 
       def data_changed(changed_objects)
         @changed_objects = changed_objects
-        run_callbacks(:data_changed, :after)
+        run_callbacks :data_changed
       end
 
       # Public: Рабочее соединение с БД для данной очереди.

@@ -7,9 +7,7 @@ module FieldCallback
     set_callback :data_changed, :after, :data_changed_callback
   end
 
-  module InstanceMethods
-    def data_changed_callback; end
-  end
+  def data_changed_callback; end
 end
 
 class TreasuryFieldsBase < Treasury::Fields::Base
@@ -23,7 +21,7 @@ describe TreasuryFieldsBase do
     let(:chaged_objects) { [1, 2, 3] }
 
     it 'run callbacks' do
-      expect(subject).to receive(:run_callbacks).with(:data_changed, :after)
+      expect(subject).to receive(:run_callbacks).with(:data_changed)
       subject.send(:data_changed, chaged_objects)
     end
 
