@@ -6,8 +6,8 @@ module Treasury
     extend ActiveSupport::Concern
 
     included do
+      let(:field) { field_class.instance }
       let(:field_class) { field_model.field_class.constantize }
-      let(:field) { Treasury::Fields::Base.create_by_class(field_class, field_model) }
     end
 
     def field_initialize
@@ -25,10 +25,7 @@ module Treasury
           else raise 'Unknown initialize method'
           end
 
-          current_snapshot = field.send(:work_connection).select_value('SELECT txid_current_snapshot()')
-          field_model.update_attribute(:snapshot_id, current_snapshot)
-
-          field.send(:set_state, Fields::STATE_INITIALIZED)
+          allow(field).to receive(:cached_state).and_return(Fields::STATE_INITIALIZED)
           field.send(:after_initialize)
         end
       end

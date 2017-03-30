@@ -5,6 +5,7 @@ module Treasury
 
       included do
         let(:field_model) { Models::Field.find_by_field_class!(described_class) }
+
         let(:initial_state) do
           {
             field_active: true,

@@ -4,18 +4,22 @@ module Treasury
       extend ActiveSupport::Concern
 
       included do
-        let(:worker_model) { field_model.worker }
-        let(:field_model) { processor_model.field }
         let(:processor_model) { Models::Processor.find_by_processor_class!(described_class) }
         let(:processor) { processor_model.processor_class.constantize.new(processor_model) }
+        let(:worker_model) { field_model.worker }
+        let(:field_model) { processor_model.field }
 
         let(:initial_state) do
-          {worker_active: true, woker_need_terminate: false}
+          {worker_active: true, worker_need_terminate: false}
         end
 
         it 'initial state is correct' do
           expect(worker_model.active?).to eq initial_state.fetch(:worker_active)
-          expect(worker_model.need_terminate?).to initial_state.fetch(:woker_need_terminate)
+          expect(worker_model.need_terminate?).to eq initial_state.fetch(:worker_need_terminate)
+        end
+
+        before do
+          allow(processor).to receive(:field).and_return(field)
         end
       end
 
@@ -23,6 +27,11 @@ module Treasury
         processor_model.subscribe!
         field_initialize
         tick
+
+        while batch_id = processor.get_next_batch
+          processor.instance_variable_set(:@batch_id, batch_id)
+          processor.finish_batch
+        end
       end
 
       def process_events
