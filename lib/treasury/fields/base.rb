@@ -1,5 +1,3 @@
-# coding: utf-8
-
 module Treasury
   module Fields
     class Base
@@ -7,7 +5,7 @@ module Treasury
       include Treasury::Session
       include Treasury::Logging
       include ActiveSupport::Callbacks
-      extend  Accessors
+      extend Apress::Sources::Accessors
 
       DEFAULT_BATCH_SIZE  = 1000
 
