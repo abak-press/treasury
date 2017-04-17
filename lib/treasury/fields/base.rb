@@ -46,6 +46,10 @@ module Treasury
       #
       define_callbacks :data_changed
 
+      def self.raise_no_implemented(accessor_type, params)
+        raise Treasury::Fields::Errors::NoAccessor.new(self, accessor_type, params)
+      end
+
       def self.create_by_class(klass, field_model = Treasury::Models::Field.find_by_field_class(klass.to_s))
         raise Errors::UnknownFieldClassError if field_model.nil?
         return klass.to_s.constantize.new(field_model)
