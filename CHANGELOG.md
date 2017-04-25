@@ -1,5 +1,19 @@
+#  (tag: v1.2.0)
+
+ * 2017-04-25 [67b91c3](../../commit/67b91c3) - __(Semyon Pupkov)__ Release 1.2.0 
+ * 2017-04-25 [c896c72](../../commit/c896c72) - __(Semyon Pupkov)__ chore: use apress-sources version 
+ * 2017-03-23 [7f2966c](../../commit/7f2966c) - __(Sergey Kucher)__ feature: rspec test case for fields 
+https://jira.railsc.ru/browse/ORDERS-589
+ * 2017-04-19 [91f8ef7](../../commit/91f8ef7) - __(Semyon Pupkov)__ fix: add extractor back for capability 
+https://jira.railsc.ru/browse/USERS-244
+ * 2017-04-17 [570ec1d](../../commit/570ec1d) - __(Semyon Pupkov)__ fix: add raise_no_implemented method to raise treasury error 
+https://jira.railsc.ru/browse/USERS-244
+ * 2017-04-04 [5fc0115](../../commit/5fc0115) - __(Semyon Pupkov)__ refactor: use apress-sources for accessor and extractor 
+https://jira.railsc.ru/browse/USERS-244
+
 #  (tag: v1.1.0)
 
+ * 2017-03-29 [2dfeed9](../../commit/2dfeed9) - __(Automated Release)__ Update CHANGELOG.md 
  * 2017-03-28 [2508eca](../../commit/2508eca) - __(vadshalamov)__ Release 1.1.0 
  * 2017-03-28 [5f930e3](../../commit/5f930e3) - __(vadshalamov)__ chore: add rails4 support 
  * 2017-03-27 [01bfe56](../../commit/01bfe56) - __(vadshalamov)__ chore: rm 1.9 & 3.1 support, add auto release 
