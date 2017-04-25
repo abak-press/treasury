@@ -9,6 +9,7 @@ require 'treasury/bg_executor'
 require 'resque-integration'
 require 'string_tools'
 require 'pg_tools'
+require 'apress/sources'
 
 module Treasury
   LIST_DELIMITER = ','.freeze

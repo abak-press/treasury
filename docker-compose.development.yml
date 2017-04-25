@@ -3,6 +3,7 @@ version: '2'
 services:
   app:
     volumes:
+      - ../:/localgems
       - bundler_data:/bundle
 
 volumes:
