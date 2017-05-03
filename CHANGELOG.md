@@ -1,15 +1,21 @@
+#  (tag: v1.2.1)
+
+ * 2017-05-03 [7167819](../../commit/7167819) - __(Fokin Lev)__ Release 1.2.1 
+ * 2017-05-03 [972b275](../../commit/972b275) - __(pold)__ fix(core): rails 4 compatibility 
+
 #  (tag: v1.2.0)
 
+ * 2017-04-25 [c99d826](../../commit/c99d826) - __(Automated Release)__ Update CHANGELOG.md 
  * 2017-04-25 [67b91c3](../../commit/67b91c3) - __(Semyon Pupkov)__ Release 1.2.0 
  * 2017-04-25 [c896c72](../../commit/c896c72) - __(Semyon Pupkov)__ chore: use apress-sources version 
- * 2017-03-23 [7f2966c](../../commit/7f2966c) - __(Sergey Kucher)__ feature: rspec test case for fields 
-https://jira.railsc.ru/browse/ORDERS-589
  * 2017-04-19 [91f8ef7](../../commit/91f8ef7) - __(Semyon Pupkov)__ fix: add extractor back for capability 
 https://jira.railsc.ru/browse/USERS-244
  * 2017-04-17 [570ec1d](../../commit/570ec1d) - __(Semyon Pupkov)__ fix: add raise_no_implemented method to raise treasury error 
 https://jira.railsc.ru/browse/USERS-244
  * 2017-04-04 [5fc0115](../../commit/5fc0115) - __(Semyon Pupkov)__ refactor: use apress-sources for accessor and extractor 
 https://jira.railsc.ru/browse/USERS-244
+ * 2017-03-23 [7f2966c](../../commit/7f2966c) - __(Sergey Kucher)__ feature: rspec test case for fields 
+https://jira.railsc.ru/browse/ORDERS-589
 
 #  (tag: v1.1.0)
 
@@ -40,13 +46,13 @@ https://jira.railsc.ru/browse/USERS-143
 #  (tag: v0.6.0)
 
  * 2016-12-15 [4114d25](../../commit/4114d25) - __(Semyon Pupkov)__ Release 0.6.0 
+ * 2016-12-12 [304296b](../../commit/304296b) - __(Salahutdinov Dmitry)__ feature: event data readers (#28) 
  * 2016-12-13 [218eaba](../../commit/218eaba) - __(vadshalamov)__ feature: move ReinitializeObjectJob into gem 
 https://jira.railsc.ru/browse/USERS-143
  * 2016-12-13 [fd12ed8](../../commit/fd12ed8) - __(Vadim Shalamov)__ fix: add Models module to backwards (#29) 
 https://jira.railsc.ru/browse/USERS-143
  * 2016-12-13 [7b7573f](../../commit/7b7573f) - __(Vadim Shalamov)__ feature: add bge:run task for docker (#27) 
 https://jira.railsc.ru/browse/USERS-143
- * 2016-12-12 [304296b](../../commit/304296b) - __(Salahutdinov Dmitry)__ feature: event data readers (#28) 
  * 2016-12-01 [5d625a2](../../commit/5d625a2) - __(vadshalamov)__ feature: move core_demormalization into gem 
 https://jira.railsc.ru/browse/USERS-143
  * 2016-11-24 [3adddec](../../commit/3adddec) - __(vadshalamov)__ feature: move bg_executor plugin into gem 
@@ -90,16 +96,16 @@ PC4-17243
 
  * 2016-03-11 [d464026](../../commit/d464026) - __(Salahutdinov Dmitry)__ Release 0.2.0 
  * 2016-03-11 [644a080](../../commit/644a080) - __(Sergey Kucher)__ chore: move methods from plugin into gem for processors base - #object - #no_action https://jira.railsc.ru/browse/PC4-15968 
- * 2016-03-10 [9db4360](../../commit/9db4360) - __(Sergey Kucher)__ feature: create manager orders counter - current value and object value for processors base 
-https://jira.railsc.ru/browse/PC4-16548
  * 2016-03-02 [2d4cf6f](../../commit/2d4cf6f) - __(Semyon Pupkov)__ chore: use spec_helper instead internal class 
 
 #  (tag: v0.1.0)
 
  * 2016-03-02 [c21355d](../../commit/c21355d) - __(Semyon Pupkov)__ Release 0.1.0 
+ * 2016-03-02 [07aac88](../../commit/07aac88) - __(Semyon Pupkov)__ feature: add helper for stub plugin into tests 
+ * 2016-03-10 [9db4360](../../commit/9db4360) - __(Sergey Kucher)__ feature: create manager orders counter - current value and object value for processors base 
+https://jira.railsc.ru/browse/PC4-16548
  * 2016-03-01 [863782b](../../commit/863782b) - __(Sergey Kucher)__ fix: customer new orders counter - fix treasury/processors/counters module in case when nothing changing 
 https://jira.railsc.ru/browse/PC4-16549
- * 2016-03-02 [07aac88](../../commit/07aac88) - __(Semyon Pupkov)__ feature: add helper for stub plugin into tests 
 
 #  (tag: v0.0.5)
 
