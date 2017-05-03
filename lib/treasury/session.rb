@@ -25,18 +25,16 @@ module Treasury
       end
     end
 
-    module InstanceMethods
-      def pid
-        self.class.pid
-      end
+    def pid
+      self.class.pid
+    end
 
-      def process_is_alive?(pid)
-        self.class.process_is_alive?(pid)
-      end
+    def process_is_alive?(pid)
+      self.class.process_is_alive?(pid)
+    end
 
-      def process_is_dead?(pid)
-        self.class.process_is_dead?(pid)
-      end
+    def process_is_dead?(pid)
+      self.class.process_is_dead?(pid)
     end
   end
 end

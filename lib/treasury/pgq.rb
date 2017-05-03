@@ -58,7 +58,7 @@ module Treasury
     end
 
     def get_batch_events_by_cursor(batch_id, cursor_name, fetch_size, extra_where, conn)
-      conn.select_all(<<-SQL.squish)
+      conn.select_all(<<-SQL.squish).to_a
         SELECT * FROM pgq.get_batch_cursor(
           #{batch_id},
           #{connection.quote(cursor_name)},

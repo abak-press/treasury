@@ -303,8 +303,11 @@ module Treasury
       end
 
       def start_snapshot
-        work_connection.select_value <<-SQL
+        work_connection.execute <<-SQL
           SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+        SQL
+
+        work_connection.select_value <<-SQL
           SELECT txid_current_snapshot();
         SQL
       end
