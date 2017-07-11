@@ -15,7 +15,7 @@ describe Treasury::Fields::HashOperations do
 
     it do
       expect(hash_field_class).to receive(:init_accessor).with(object: 123, field: :count)
-      expect(value_as_hash).to eq(10 => 100, 20 => 200)
+      expect(value_as_hash).to eq('10' => 100, '20' => 200)
     end
   end
 end
