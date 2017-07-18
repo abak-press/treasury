@@ -249,7 +249,7 @@ module Treasury
 
         logger.info "min_id = #{min_id}, max_id = #{max_id}, ~ count = #{max_id - min_id}"
 
-        while min_id < max_id
+        while min_id <= max_id
           exit unless check_terminate
 
           next_id = min_id + batch_size - 1
