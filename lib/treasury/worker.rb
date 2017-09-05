@@ -97,6 +97,7 @@ module Treasury
             raise
           end
         rescue StandardError, NotImplementedError => e
+          raise if Rails.env.test?
           logger.error "Ошибка при обработке поля #{field.title}:"
           log_error(e)
         end
