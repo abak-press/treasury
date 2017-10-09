@@ -29,6 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'string_tools', '>= 0.6.1'
   spec.add_runtime_dependency 'resque-integration', '>= 1.9'
   spec.add_runtime_dependency 'apress-sources', '>= 0.3.0'
+  spec.add_runtime_dependency 'oj', '>= 2.9.9'
 
   spec.add_development_dependency 'rspec-rails'
   spec.add_development_dependency 'factory_girl_rails'
