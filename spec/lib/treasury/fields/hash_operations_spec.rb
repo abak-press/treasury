@@ -1,9 +1,10 @@
 describe Treasury::Fields::HashOperations do
   let(:hash_field_class) do
-    Class.new { include Treasury::Fields::HashOperations }
+    Class.new do
+      include Treasury::Fields::HashOperations
+      extend Treasury::HashSerializer
+    end
   end
-
-  it { expect(hash_field_class.singleton_class.included_modules).to include Treasury::HashSerializer }
 
   describe "#value_as_hash" do
     let(:value_as_hash) { hash_field_class.value_as_hash(object: 123, field: :count) }
@@ -15,7 +16,7 @@ describe Treasury::Fields::HashOperations do
 
     it do
       expect(hash_field_class).to receive(:init_accessor).with(object: 123, field: :count)
-      expect(value_as_hash).to eq(10 => 100, 20 => 200)
+      expect(value_as_hash).to eq('10' => 100, '20' => 200)
     end
   end
 end

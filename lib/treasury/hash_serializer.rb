@@ -1,7 +1,16 @@
 module Treasury
   module HashSerializer
     def deserialize(hash_string)
-      hash_string.blank? ? Hash.new : Hash[hash_string.split(',').map { |item| item.split(':').map(&:to_i) }]
+      return Hash.new if hash_string.blank?
+
+      hash_data = hash_string
+        .split(',')
+        .map do |item|
+          key, value = item.split(':')
+          [key, value.to_i]
+        end
+
+      Hash[hash_data]
     end
 
     def serialize(hash)

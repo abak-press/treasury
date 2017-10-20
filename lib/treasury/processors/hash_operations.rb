@@ -4,21 +4,21 @@ module Treasury
       include HashSerializer
 
       def increment_raw_value(raw_hash, key, step = 1)
-        numeric_key = key.to_i
+        key_string = key.to_s
         process_value(raw_hash) do |data|
-          data[numeric_key] = data[numeric_key].to_i + step.to_i
+          data[key_string] = data[key_string].to_i + step.to_i
         end
       end
 
       def decrement_raw_value(raw_hash, key, step = 1)
-        numeric_key = key.to_i
+        key_string = key.to_s
         process_value(raw_hash) do |data|
-          if data.key?(numeric_key)
-            new_value = data[numeric_key] - step.to_i
+          if data.key?(key_string)
+            new_value = data[key_string] - step.to_i
             if new_value > 0
-              data[numeric_key] = new_value
+              data[key_string] = new_value
             else
-              data.delete numeric_key
+              data.delete key_string
             end
           end
         end

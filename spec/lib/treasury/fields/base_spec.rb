@@ -46,4 +46,17 @@ describe TreasuryFieldsBase do
         .to raise_error(Treasury::Fields::Errors::NoAccessor)
     end
   end
+
+  describe '#reset_field_value' do
+    let(:storage) { double(id: :dummy) }
+
+    before do
+      allow(subject).to receive(:logger).and_return Rails.logger
+      allow(subject).to receive(:storages).and_return([storage])
+    end
+
+    it { expect(storage).to receive(:reset_data).with(nil, [:dummy_field]) }
+
+    after { subject.reset_field_value(:dummy_field) }
+  end
 end

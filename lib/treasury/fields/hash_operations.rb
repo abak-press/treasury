@@ -3,10 +3,6 @@ module Treasury
     module HashOperations
       extend ActiveSupport::Concern
 
-      included do
-        extend HashSerializer
-      end
-
       module ClassMethods
         def value_as_hash(params)
           init_accessor(params)

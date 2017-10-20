@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe ::Treasury::HashSerializer do
+describe ::Treasury::JsonSerializer do
   let(:serializer) { serializer_class.new }
   let(:serializer_class) do
-    Class.new { extend ::Treasury::HashSerializer }
+    Class.new { extend ::Treasury::JsonSerializer }
   end
 
   describe '#serialize' do
@@ -22,9 +22,9 @@ describe ::Treasury::HashSerializer do
     end
 
     context 'when value ok' do
-      let(:value) { {123 => 321, 234 => 432} }
+      let(:value) { {'hello' => 321, 'world' => {'hello' => 123}} }
 
-      it { expect(serialize).to eq '123:321,234:432' }
+      it { expect(serialize).to eq '{"hello":321,"world":{"hello":123}}' }
     end
   end
 
@@ -44,9 +44,9 @@ describe ::Treasury::HashSerializer do
     end
 
     context 'when value ok' do
-      let(:value) { '123:321,234:432' }
+      let(:value) { '{"hello":321,"world":{"hello":123}}' }
 
-      it { expect(deserialize).to eq('123' => 321, '234' => 432) }
+      it { expect(deserialize).to eq('hello' => 321, 'world' => {'hello' => 123}) }
     end
   end
 end

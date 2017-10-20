@@ -157,6 +157,10 @@ module Treasury
         raw_value_from_storage object, field, storage
       end
 
+      def reset_field_value(field_name)
+        reset_storage_data([field_name])
+      end
+
       protected
 
       attr_reader :changed_objects
@@ -179,10 +183,10 @@ module Treasury
         field_params[:fields].keys
       end
 
-      def reset_storage_data
+      def reset_storage_data(fields = [])
         storages.each do |storage|
           logger.info "Сбрасываю данные хранилища #{storage.id}"
-          storage.reset_data(objects_for_reset, fields_for_reset)
+          storage.reset_data(objects_for_reset, fields.empty? ? fields_for_reset : fields)
         end
       end
 
@@ -249,7 +253,7 @@ module Treasury
 
         logger.info "min_id = #{min_id}, max_id = #{max_id}, ~ count = #{max_id - min_id}"
 
-        while min_id < max_id
+        while min_id <= max_id
           exit unless check_terminate
 
           next_id = min_id + batch_size - 1
