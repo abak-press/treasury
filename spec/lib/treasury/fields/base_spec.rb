@@ -19,7 +19,7 @@ class TreasuryFieldsBase < Treasury::Fields::Base
 end
 
 describe TreasuryFieldsBase do
-  subject { described_class.new(nil) }
+  subject { described_class.new(build_stubbed(:'denormalization/field')) }
 
   context '#data_changed' do
     let(:chaged_objects) { [1, 2, 3] }
