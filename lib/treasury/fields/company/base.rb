@@ -9,18 +9,7 @@ module Treasury
 
         extract_attribute_name :company
 
-        BATCH_SIZE = 10_000
-
-        protected
-
-        # Protected: Инициализирует параметры поля.
-        #
-        # Returns nothing.
-
-        def init_params
-          super
-          self.batch_size = BATCH_SIZE
-        end
+        self.default_batch_size = 10_000
       end
     end
   end

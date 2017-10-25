@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'oj', '>= 2.9.9'
 
   spec.add_development_dependency 'rspec-rails'
-  spec.add_development_dependency 'factory_girl_rails'
+  spec.add_development_dependency 'factory_girl_rails', '<= 4.8.0'
   spec.add_development_dependency 'apress-rspec'
   spec.add_development_dependency 'simplecov'
   spec.add_development_dependency 'combustion', '>= 0.5.3'

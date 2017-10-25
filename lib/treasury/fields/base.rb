@@ -7,8 +7,6 @@ module Treasury
       include ActiveSupport::Callbacks
       extend Apress::Sources::Accessors
 
-      DEFAULT_BATCH_SIZE  = 1000
-
       # пауза после обработки батча данных
       # позволяет снизить нагрузку на БД при инициализации,
       # за счет увеличения времени инициализации
@@ -21,6 +19,8 @@ module Treasury
       class_attribute :_instance
 
       class_attribute :initialize_method
+      class_attribute :default_batch_size
+      self.default_batch_size = 1000
 
       self.initialize_method = :offset
 
@@ -69,7 +69,7 @@ module Treasury
       end
 
       def init_params
-        @batch_size = DEFAULT_BATCH_SIZE
+        @batch_size = field_params.fetch(:batch_size, self.class.default_batch_size)
         @batch_pause = DEFAULT_BATCH_PAUSE
       end
 
@@ -543,7 +543,7 @@ module Treasury
       # Returns Hash.
 
       def field_params
-        field_model.params.with_indifferent_access || {}
+        (field_model.params || {}).with_indifferent_access
       end
 
       # Private: Возвращает префикс хранения для полей.
