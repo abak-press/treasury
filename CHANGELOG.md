@@ -1,6 +1,10 @@
+# v1.4.0
+
+* 2017-10-25 [21c27b6](../../commit/21c27b6) - __(Salahutdinov Dmitry)__ Release 1.4.0 
+* 2017-10-20 [a5a9c32](../../commit/a5a9c32) - __(Salahutdinov Dmitry)__ feature: specify intialization batch_size as field parameter 
+
 # v1.3.0
 
-* 2017-10-20 [8c51350](../../commit/8c51350) - __(Salahutdinov Dmitry)__ Release 1.3.0 
 * 2017-10-09 [3c034b4](../../commit/3c034b4) - __(Salahutdinov Dmitry)__ feature: json format for hash serialization 
 https://jira.railsc.ru/browse/ORDERS-801
 
