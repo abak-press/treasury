@@ -1,6 +1,10 @@
+# v1.4.1
+
+* 2017-11-02 [64ed760](../../commit/64ed760) - __(Artem Napolskih)__ Release 1.4.1 
+* 2017-11-02 [46b03be](../../commit/46b03be) - __(Artem Napolskih)__ fix: high cpu load on idle 
+
 # v1.4.0
 
-* 2017-10-25 [21c27b6](../../commit/21c27b6) - __(Salahutdinov Dmitry)__ Release 1.4.0 
 * 2017-10-20 [a5a9c32](../../commit/a5a9c32) - __(Salahutdinov Dmitry)__ feature: specify intialization batch_size as field parameter 
 
 # v1.3.0
