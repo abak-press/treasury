@@ -6,8 +6,8 @@ module Treasury
     STATE_STOPPED = 'stopped'.freeze
 
     REFRESH_FIELDS_LIST_PERIOD     = Rails.env.staging? || !Rails.env.production? ? 1.minute : 1.minute
-    IDLE_MAX_LAG                   = 5.minutes
-    PROCESS_LOOP_NORMAL_SLEEP_TIME = Rails.env.test? ? 0 : 0.05.seconds
+    IDLE_MAX_LAG                   = 2.minutes
+    PROCESS_LOOP_NORMAL_SLEEP_TIME = Rails.env.test? ? 0 : 0.seconds
     PROCESS_LOOP_IDLE_SLEEP_TIME   = Rails.env.test? ? 0 : 5.seconds
 
     LOGGER_FILE_NAME = "#{ROOT_LOGGER_DIR}/workers/%{name}_worker".freeze
@@ -68,6 +68,8 @@ module Treasury
 
       idle = true
       total_lag = 0
+      processed_queues = 0
+
       @processing_fields.each do |field|
         begin
           begin
@@ -89,6 +91,7 @@ module Treasury
 
               total_lag += @consumers_info[processor.consumer_name].try(:[], :seconds_lag).to_i
               idle &&= events_processed.zero?
+              processed_queues += 1
             end
           rescue Pgq::Errors::QueueOrSubscriberNotFoundError, Processors::Errors::InconsistencyDataError => e
             # обработка исключений, требующих переиницилизации поля
@@ -103,7 +106,10 @@ module Treasury
         end
       end
 
-      idle &&= total_lag < IDLE_MAX_LAG unless Rails.env.test?
+      unless Rails.env.test? || processed_queues.zero?
+        idle &&= total_lag / processed_queues < IDLE_MAX_LAG
+      end
+
       !idle
     end
 
