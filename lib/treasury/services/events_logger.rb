@@ -193,6 +193,8 @@ module Treasury
       def self.logger_default_file_name
         LOGGER_FILE_NAME
       end
+
+      ActiveSupport.run_load_hooks(:'treasury/services/events_logger', self)
     end
   end
 end
