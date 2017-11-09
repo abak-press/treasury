@@ -12,7 +12,10 @@ namespace :denormalization do
       trem = ENV['trem'].nil? ? false : ENV['trem'] == 'true'
       rrem = ENV['rrem'].nil? ? true  : ENV['rrem'] == 'true'
 
-      Treasury::Services::EventsLogger.new.process(date, trem, rrem)
+
+      Treasury.configuration.events_loggers.each do |logger_class|
+        logger_class.constantize.new.process(date, trem, rrem)
+      end
     end
 
     desc 'Удаление накопленных, за сутки, данных из Redis'
@@ -23,18 +26,24 @@ namespace :denormalization do
         date = Date.civil(date_arr[0].to_i, date_arr[1].to_i, date_arr[2].to_i)
       end
 
-      Treasury::Services::EventsLogger.new.delete_events(date)
+      Treasury.configuration.events_loggers.each do |logger_class|
+        logger_class.constantize.new.delete_events(date)
+      end
     end
 
     desc 'Показать список дат, за которые есть данные в Redis'
     task dates: :environment do
-      dates = Treasury::Services::EventsLogger.new.dates_list
-      if !dates.empty?
-        dates.each do |date, count|
-          puts "#{date} - #{count} log rows"
+      Treasury.configuration.events_loggers.each do |logger_class|
+        puts logger_class
+        dates = logger_class.constantize.new.dates_list
+        if !dates.empty?
+          dates.each do |date, count|
+            puts "#{date} - #{count} log rows"
+          end
+        else
+          puts 'Empty.'
         end
-      else
-        puts 'Empty.'
+        puts
       end
     end
   end
