@@ -33,7 +33,7 @@ module Treasury
           params[:consumer],
           params[:event].id,
           params[:event].type,
-          params[:event].time,
+          params[:event].birth_time,
           params[:event].txid,
           params[:event].ev_data,
           params[:event].extra1,
