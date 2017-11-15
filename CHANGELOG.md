@@ -1,6 +1,11 @@
+# v1.4.3
+
+* 2017-11-15 [d563381](../../commit/d563381) - __(Sergey Kucher)__ Release 1.4.3 
+* 2017-11-15 [dd7a82e](../../commit/dd7a82e) - __(Sergey Kucher)__ fix: logger event time 
+https://jira.railsc.ru/browse/ORDERS-967
+
 # v1.4.2
 
-* 2017-11-15 [5b61162](../../commit/5b61162) - __(Salahutdinov Dmitry)__ Release 1.4.2 
 * 2017-11-03 [7797046](../../commit/7797046) - __(Sergey Kucher)__ chore: run load hooks for events logger 
 https://jira.railsc.ru/browse/ORDERS-716
 
