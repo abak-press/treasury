@@ -1,6 +1,11 @@
+# v1.4.2
+
+* 2017-11-15 [5b61162](../../commit/5b61162) - __(Salahutdinov Dmitry)__ Release 1.4.2 
+* 2017-11-03 [7797046](../../commit/7797046) - __(Sergey Kucher)__ chore: run load hooks for events logger 
+https://jira.railsc.ru/browse/ORDERS-716
+
 # v1.4.1
 
-* 2017-11-02 [64ed760](../../commit/64ed760) - __(Artem Napolskih)__ Release 1.4.1 
 * 2017-11-02 [46b03be](../../commit/46b03be) - __(Artem Napolskih)__ fix: high cpu load on idle 
 
 # v1.4.0
