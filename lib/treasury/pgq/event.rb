@@ -80,7 +80,7 @@ module Treasury
         return {} if query.nil?
         query.split('&').inject(HashWithIndifferentAccess.new) do |result, item|
           k, v = item.split('=')
-          result.merge!(k => v)
+          result.merge!(k => Rack::Utils.unescape(v))
         end
       end
     end
