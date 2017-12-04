@@ -1,6 +1,11 @@
+# v1.4.4
+
+* 2017-12-04 [ac6b733](../../commit/ac6b733) - __(Sergey Kucher)__ Release 1.4.4 
+* 2017-12-01 [94d18ab](../../commit/94d18ab) - __(Sergey Kucher)__ fix: increase events log payload column size 
+https://jira.railsc.ru/browse/ORDERS-1191
+
 # v1.4.3
 
-* 2017-11-15 [d563381](../../commit/d563381) - __(Sergey Kucher)__ Release 1.4.3 
 * 2017-11-15 [dd7a82e](../../commit/dd7a82e) - __(Sergey Kucher)__ fix: logger event time 
 https://jira.railsc.ru/browse/ORDERS-967
 
