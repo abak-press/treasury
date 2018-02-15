@@ -19,7 +19,8 @@ class TreasuryFieldsBase < Treasury::Fields::Base
 end
 
 describe TreasuryFieldsBase do
-  subject { described_class.new(build_stubbed(:'denormalization/field')) }
+  let(:field) { build_stubbed :'denormalization/field' }
+  subject { described_class.new(field) }
 
   context '#data_changed' do
     let(:chaged_objects) { [1, 2, 3] }
@@ -58,5 +59,39 @@ describe TreasuryFieldsBase do
     it { expect(storage).to receive(:reset_data).with(nil, [:dummy_field]) }
 
     after { subject.reset_field_value(:dummy_field) }
+  end
+
+  describe '#value' do
+    let(:silence) { false }
+
+    before do
+      described_class._instance = nil
+
+      allow(field).to receive(:reload)
+      allow(Treasury::Fields::Base).to receive(:extract_object)
+      allow(Treasury::Fields::Base).to receive(:create_by_class).and_return(subject)
+      allow_any_instance_of(Treasury::Fields::Base).to receive(:raw_value_from_storage).and_return(value_from_storage)
+
+      described_class.init_accessor(silence: silence)
+    end
+
+    context 'when field initialized' do
+      let(:value_from_storage) { 5 }
+
+      it { expect(described_class.value).to eq 5 }
+    end
+
+    context 'when field uninitialized' do
+      let(:field) { build_stubbed :'denormalization/field', :need_initialize }
+      let(:value_from_storage) { nil }
+
+      it { expect { described_class.value }.to raise_error Treasury::Fields::Errors::UninitializedFieldError }
+
+      context 'when silence' do
+        let(:silence) { true }
+
+        it { expect(described_class.value).to eq nil }
+      end
+    end
   end
 end
