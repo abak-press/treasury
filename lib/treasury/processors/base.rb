@@ -12,7 +12,9 @@ module Treasury
       attr_reader   :data
       attr_reader   :params
       attr_reader   :event
+
       attr_accessor :object
+      attr_accessor :prev_object
 
       def initialize(processor_info, logger = Rails.logger)
         @processor_info = processor_info
@@ -71,6 +73,10 @@ module Treasury
 
       def current_value(field_name = nil)
         object_value(@object, field_name)
+      end
+
+      def previous_value(field_name = nil)
+        object_value(@prev_object, field_name)
       end
 
       def object_value(l_object, field_name = nil)
