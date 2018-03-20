@@ -1,6 +1,11 @@
+# v1.5.0
+
+* 2018-03-20 [535a33f](../../commit/535a33f) - __(Vladislav)__ Release 1.5.0 
+* 2018-02-15 [c5cd62c](../../commit/c5cd62c) - __(Vladislav)__ feature(translator): add silence to value_as_integer 
+https://jira.railsc.ru/browse/COMM-672
+
 # v1.4.4
 
-* 2017-12-04 [ac6b733](../../commit/ac6b733) - __(Sergey Kucher)__ Release 1.4.4 
 * 2017-12-01 [94d18ab](../../commit/94d18ab) - __(Sergey Kucher)__ fix: increase events log payload column size 
 https://jira.railsc.ru/browse/ORDERS-1191
 
