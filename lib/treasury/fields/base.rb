@@ -169,10 +169,6 @@ module Treasury
         raw_value(@accessing_object, @accessing_field)
       end
 
-      def self.value?
-        raw_value?(@accessing_object, @accessing_field)
-      end
-
       def raw_value_from_storage(object, field = nil, storage = nil)
         storage = storages_hash[storage || default_storage.id]
         field ||= first_field
@@ -410,22 +406,8 @@ module Treasury
       # See InstanceMethods#raw_value
       #
       # Returns значение поля.
-
       def self.raw_value(object, field = nil, storage = nil)
-        instance.raw_value(object, field, storage)
-      end
-
-      # Public: Проверяет инициализировано ли поле.
-      #         Если нет, то возвращает nil.
-      #         Если да, то возвращает значение поля.
-      #
-      # See InstanceMethods#raw_value?
-      #
-      # Returns
-      #  nil - если поле не инициализировано
-      #  значение поля - если поле ициализировано
-      def self.raw_value?(object, field = nil, storage = nil)
-        instance.raw_value?(object, field, storage)
+        @silence ? instance.raw_value?(object, field, storage) : instance.raw_value(object, field, storage)
       end
 
       def self.logger_default_file_name
@@ -443,6 +425,7 @@ module Treasury
       def self.init_accessor(params)
         @accessing_object = extract_object(params)
         @accessing_field  = params[:field]
+        @silence = params.fetch(:silence, false)
       end
 
       def self.accessing_object
