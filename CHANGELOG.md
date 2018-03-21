@@ -1,6 +1,12 @@
+# v1.6.0
+
+* 2018-03-21 [199f89a](../../commit/199f89a) - __(Sergey Kucher)__ Release 1.6.0 
+* 2018-03-21 [6e221ce](../../commit/6e221ce) - __(Sergey Kucher)__ chore: Release 1.5.0 
+* 2018-03-15 [0d0e6c6](../../commit/0d0e6c6) - __(Sergey Kucher)__ chore: previous company for processors/company/base 
+https://jira.railsc.ru/browse/ORDERS-1453
+
 # v1.5.0
 
-* 2018-03-20 [535a33f](../../commit/535a33f) - __(Vladislav)__ Release 1.5.0 
 * 2018-02-15 [c5cd62c](../../commit/c5cd62c) - __(Vladislav)__ feature(translator): add silence to value_as_integer 
 https://jira.railsc.ru/browse/COMM-672
 
