@@ -93,7 +93,7 @@ module Treasury
         begin
           Timeout.timeout(WORKERS_TERMINATE_TIMEOUT) do
             while workers_pids.present?
-              Treasury::Models::Worker.all.map(&:terminate)
+              Treasury::Models::Worker.all.each(&:terminate)
               sleep(5.seconds)
             end
             puts 'Workers stopped.'
