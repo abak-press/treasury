@@ -4,9 +4,9 @@ module Treasury
   class Controller
     SUPERVISOR_TERMINATE_TIMEOUT = 10 # seconds
     SUPERVISOR_JOB_NAME = 'treasury/supervisor'.freeze
-    SUPERVISOR_CMDLINE_PATTERN = ': treasury/supervisor'.freeze
+    SUPERVISOR_CMDLINE_PATTERN = ': treasury/[s]upervisor'.freeze
     WORKERS_TERMINATE_TIMEOUT = 60 # seconds
-    WORKER_CMDLINE_PATTERN = ': treasury/worker'.freeze
+    WORKER_CMDLINE_PATTERN = ': treasury/[w]orker'.freeze
     WORKER_JOB_NAME = 'treasury/worker'.freeze
 
     class << self
