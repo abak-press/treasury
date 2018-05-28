@@ -93,25 +93,42 @@ module Treasury
         begin
           Timeout.timeout(WORKERS_TERMINATE_TIMEOUT) do
             while workers_pids.present?
-              Treasury::Models::Worker.all.map(&:terminate)
+              Treasury::Models::Worker.all.each(&:terminate)
               sleep(5.seconds)
             end
             puts 'Workers stopped.'
           end
         rescue Timeout::Error
-          puts 'Timeout expired. Terminating...'
-          `kill -9 #{workers_pids}`
+          puts "Timeout expired"
+
+          pids = workers_pids
+          return unless pids
+
+          puts "Terminating pids #{pids.join(' ')}..."
+          `kill -9 #{pids.join(' ')}`
         end
       end
 
       private
 
+      # Internal: denormalization worker pids by cmd line pattern
+      #
+      # Returns Array | nil
       def workers_pids
-        `pgrep -f "#{WORKER_CMDLINE_PATTERN}" &2>/dev/null`.gsub("\n", ' ')
+        pgrep_result = `pgrep -f '#{WORKER_CMDLINE_PATTERN}'`.split("\n")
+        return unless $CHILD_STATUS.success?
+
+        pgrep_result
       end
 
+      # Internal: denormalization supervisor pid by cmd line pattern
+      #
+      # Returns Array | nil
       def supervisor_pid
-        `pgrep -f "#{SUPERVISOR_CMDLINE_PATTERN}" &2>/dev/null`
+        pgrep_result = `pgrep -f '#{SUPERVISOR_CMDLINE_PATTERN}'`.split("\n")
+        return unless $CHILD_STATUS.success?
+
+        pgrep_result
       end
 
       def reset_supervisor_job
@@ -137,7 +154,7 @@ module Treasury
         pid = supervisor_pid
         return unless pid.present?
 
-        `kill -9 #{pid}`
+        `kill -9 #{pid.join(' ')}`
 
         Timeout.timeout(SUPERVISOR_TERMINATE_TIMEOUT) do
           sleep(5.seconds) while supervisor_pid.present?
