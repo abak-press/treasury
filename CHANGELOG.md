@@ -1,6 +1,11 @@
+# v1.6.2
+
+* 2018-05-28 [d9fb099](../../commit/d9fb099) - __(Andrew N. Shalaev)__ Release v1.6.2 
+* 2018-05-28 [1e14f35](../../commit/1e14f35) - __(Andrew N. Shalaev)__ fix: pgrep should not match with self 
+https://jira.railsc.ru/browse/BPC-12530
+
 # v1.6.1
 
-* 2018-05-28 [7c1265a](../../commit/7c1265a) - __(Andrew N. Shalaev)__ Release v1.6.1 
 * 2018-05-28 [6c78cf3](../../commit/6c78cf3) - __(Andrew N. Shalaev)__ fix: some typo in code 
 * 2018-05-28 [9968c5d](../../commit/9968c5d) - __(Andrew N. Shalaev)__ fix: wrong cmd line format for find pids by pattern 
 
