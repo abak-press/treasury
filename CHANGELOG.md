@@ -1,6 +1,11 @@
+# v1.6.1
+
+* 2018-05-28 [7c1265a](../../commit/7c1265a) - __(Andrew N. Shalaev)__ Release v1.6.1 
+* 2018-05-28 [6c78cf3](../../commit/6c78cf3) - __(Andrew N. Shalaev)__ fix: some typo in code 
+* 2018-05-28 [9968c5d](../../commit/9968c5d) - __(Andrew N. Shalaev)__ fix: wrong cmd line format for find pids by pattern 
+
 # v1.6.0
 
-* 2018-03-21 [199f89a](../../commit/199f89a) - __(Sergey Kucher)__ Release 1.6.0 
 * 2018-03-21 [6e221ce](../../commit/6e221ce) - __(Sergey Kucher)__ chore: Release 1.5.0 
 * 2018-03-15 [0d0e6c6](../../commit/0d0e6c6) - __(Sergey Kucher)__ chore: previous company for processors/company/base 
 https://jira.railsc.ru/browse/ORDERS-1453
