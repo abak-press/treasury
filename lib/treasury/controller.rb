@@ -1,4 +1,4 @@
-# coding: utf-8
+require 'redis-mutex'
 
 module Treasury
   class Controller
@@ -8,7 +8,7 @@ module Treasury
     WORKERS_TERMINATE_TIMEOUT = 60 # seconds
     WORKER_CMDLINE_PATTERN = ': treasury/[w]orker'.freeze
     WORKER_JOB_NAME = 'treasury/worker'.freeze
-    LOCK_EXPIRATION = 86400 # seconds (24 hours)
+    LOCK_EXPIRATION = 86_400 # seconds (24 hours)
     MUTEX_NAME = :treasury_controller
 
     class << self
