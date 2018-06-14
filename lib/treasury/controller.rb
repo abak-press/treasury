@@ -1,5 +1,3 @@
-# coding: utf-8
-
 module Treasury
   class Controller
     SUPERVISOR_TERMINATE_TIMEOUT = 10 # seconds
@@ -8,13 +6,12 @@ module Treasury
     WORKERS_TERMINATE_TIMEOUT = 60 # seconds
     WORKER_CMDLINE_PATTERN = ': treasury/[w]orker'.freeze
     WORKER_JOB_NAME = 'treasury/worker'.freeze
-    LOCK_EXPIRATION = 86400 # seconds (24 hours)
     MUTEX_NAME = :treasury_controller
 
     class << self
       # Start Supervisor
       def start
-        ::Redis::Mutex.with_lock(MUTEX_NAME, expire_in: LOCK_EXPIRATION) do
+        ::Redis::Mutex.with_lock(MUTEX_NAME, expire: ::Treasury::DEAULT_LOCK_EXPIRATION) do
           puts 'Starting denormalization service...'
 
           unless supervisor
@@ -34,7 +31,7 @@ module Treasury
 
       # Stop Supervisor and all Workers
       def stop
-        ::Redis::Mutex.with_lock(MUTEX_NAME, expire_in: LOCK_EXPIRATION) do
+        ::Redis::Mutex.with_lock(MUTEX_NAME, expire: ::Treasury::DEAULT_LOCK_EXPIRATION) do
           puts 'Stopping denormalization service...'
 
           unless supervisor
@@ -65,7 +62,7 @@ module Treasury
       end
 
       def stop_supervisor
-        ::Redis::Mutex.with_lock(MUTEX_NAME, expire_in: LOCK_EXPIRATION) do
+        ::Redis::Mutex.with_lock(MUTEX_NAME, expire: ::Treasury::DEAULT_LOCK_EXPIRATION) do
           unless supervisor
             puts 'No Supervisor configured.'
             return

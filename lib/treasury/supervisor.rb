@@ -9,14 +9,17 @@ module Treasury
     MAX_INITIALIZERS = 1
 
     LOGGER_FILE_NAME = "#{ROOT_LOGGER_DIR}/supervisor".freeze
+    MUTEX_NAME = :treasury_supervisor
 
     module Errors
       class SupervisorError < StandardError; end
     end
 
     def self.run
-      supervisor = Models::SupervisorStatus.first
-      self.new(supervisor).process
+      ::Redis::Mutex.with_lock(MUTEX_NAME, expire: ::Treasury::DEAULT_LOCK_EXPIRATION) do
+        supervisor = Models::SupervisorStatus.first
+        self.new(supervisor).process
+      end
     end
 
     def process
