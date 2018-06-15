@@ -12,6 +12,8 @@ module Treasury
 
     LOGGER_FILE_NAME = "#{ROOT_LOGGER_DIR}/workers/%{name}_worker".freeze
 
+    MUTEX_NAME_PREFIX = :treasury_worker
+
     module Errors
       class WorkerError < StandardError; end
       class UnknownWorkerError < StandardError; end
@@ -20,10 +22,12 @@ module Treasury
     cattr_accessor :name
 
     def self.run(worker_id)
-      worker = Models::Worker.find(worker_id)
-      raise UnknownWorkerError if worker.nil?
-      self.name = worker.name
-      self.new(worker).process
+      ::Treasury::Lock.with_lock("#{MUTEX_NAME_PREFIX}#{worker_id}") do
+        worker = Models::Worker.find(worker_id)
+        raise UnknownWorkerError if worker.nil?
+        self.name = worker.name
+        self.new(worker).process
+      end
     end
 
     def initialize(worker_info)

@@ -1,5 +1,3 @@
-# coding: utf-8
-
 module Treasury
   class Controller
     SUPERVISOR_TERMINATE_TIMEOUT = 10 # seconds
@@ -8,41 +6,46 @@ module Treasury
     WORKERS_TERMINATE_TIMEOUT = 60 # seconds
     WORKER_CMDLINE_PATTERN = ': treasury/[w]orker'.freeze
     WORKER_JOB_NAME = 'treasury/worker'.freeze
+    MUTEX_NAME = :treasury_controller
 
     class << self
       # Start Supervisor
       def start
-        puts 'Starting denormalization service...'
+        ::Treasury::Lock.with_lock(MUTEX_NAME) do
+          puts 'Starting denormalization service...'
 
-        unless supervisor
-          puts 'No Supervisor configured.'
-          return
-        end
+          unless supervisor
+            puts 'No Supervisor configured.'
+            return
+          end
 
-        if bg_executor_client.singleton_job_running?(SUPERVISOR_JOB_NAME, [])
-          puts 'Supervisor is already running'
-        else
-          puts 'run...'
-          job_id, job_key = bg_executor_client.queue_job!(SUPERVISOR_JOB_NAME)
-          puts 'Supervisor successfully running, job_id = %s, job_key = %s' % [job_id, job_key]
+          if bg_executor_client.singleton_job_running?(SUPERVISOR_JOB_NAME, [])
+            puts 'Supervisor is already running'
+          else
+            puts 'run...'
+            job_id, job_key = bg_executor_client.queue_job!(SUPERVISOR_JOB_NAME)
+            puts 'Supervisor successfully running, job_id = %s, job_key = %s' % [job_id, job_key]
+          end
         end
       end
 
       # Stop Supervisor and all Workers
       def stop
-        puts 'Stopping denormalization service...'
+        ::Treasury::Lock.with_lock(MUTEX_NAME) do
+          puts 'Stopping denormalization service...'
 
-        unless supervisor
-          puts 'No Supervisor configured.'
-          return
+          unless supervisor
+            puts 'No Supervisor configured.'
+            return
+          end
+
+          stop_supervisor
+
+          terminate_all_workers
+          reset_all_workers_jobs
+
+          true
         end
-
-        stop_supervisor
-
-        terminate_all_workers
-        reset_all_workers_jobs
-
-        true
       end
 
       # Restart Supervisor and all Workers
@@ -59,31 +62,33 @@ module Treasury
       end
 
       def stop_supervisor
-        unless supervisor
-          puts 'No Supervisor configured.'
-          return
-        end
-
-        if supervisor_pid.present?
-          puts 'Supervisor is running. Send command to stop...'
-          supervisor.terminate
-
-          begin
-            Timeout.timeout(SUPERVISOR_TERMINATE_TIMEOUT) do
-              sleep(5.seconds) while supervisor_pid.present?
-              puts 'Supervisor stopped.'
-            end
-          rescue Timeout::Error
-            puts 'Timeout expired. Terminating...'
-            terminate_supervisor
+        ::Treasury::Lock.with_lock(MUTEX_NAME) do
+          unless supervisor
+            puts 'No Supervisor configured.'
+            return
           end
-        else
-          puts 'Supervisor is not running.'
-        end
 
-        puts 'Reset supervisor job state...'
-        supervisor.reset_need_terminate
-        reset_supervisor_job
+          if supervisor_pid.present?
+            puts 'Supervisor is running. Send command to stop...'
+            supervisor.terminate
+
+            begin
+              Timeout.timeout(SUPERVISOR_TERMINATE_TIMEOUT) do
+                sleep(5.seconds) while supervisor_pid.present?
+                puts 'Supervisor stopped.'
+              end
+            rescue Timeout::Error
+              puts 'Timeout expired. Terminating...'
+              terminate_supervisor
+            end
+          else
+            puts 'Supervisor is not running.'
+          end
+
+          puts 'Reset supervisor job state...'
+          supervisor.reset_need_terminate
+          reset_supervisor_job
+        end
       end
 
       # Дает команду на завершение работы всем рабочим процессам
