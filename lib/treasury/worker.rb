@@ -22,7 +22,7 @@ module Treasury
     cattr_accessor :name
 
     def self.run(worker_id)
-      ::Treasury::Lock.with_lock("#{MUTEX_NAME}#{worker_id}") do
+      ::Treasury::Lock.with_lock("#{MUTEX_NAME_PREFIX}#{worker_id}") do
         worker = Models::Worker.find(worker_id)
         raise UnknownWorkerError if worker.nil?
         self.name = worker.name

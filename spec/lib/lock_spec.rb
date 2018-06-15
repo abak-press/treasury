@@ -9,7 +9,7 @@ RSpec.describe Treasury::Lock do
   describe '#lock' do
     before { blocker.lock }
 
-    it { expect(redis.smembers(described_class::KEY)).to include('foo') }
+    it { expect(redis.sismembers(described_class::KEY, :foo)).to be_truthy }
   end
 
   describe '#locked?' do
@@ -48,7 +48,7 @@ RSpec.describe Treasury::Lock do
     context 'when does not locked' do
       it do
         blocker.lock!
-        expect(redis.smembers(described_class::KEY)).to include('foo')
+        expect(redis.sismembers(described_class::KEY, :foo)).to be_truthy
       end
     end
   end
@@ -56,10 +56,10 @@ RSpec.describe Treasury::Lock do
   describe '#unlock' do
     it do
       blocker.lock
-      expect(redis.smembers(described_class::KEY)).to include('foo')
+      expect(redis.sismembers(described_class::KEY, :foo)).to be_truthy
 
       blocker.unlock
-      expect(redis.smembers(described_class::KEY)).not_to include('foo')
+      expect(redis.sismembers(described_class::KEY, :foo)).to be_falsy
     end
   end
 end

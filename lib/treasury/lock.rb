@@ -33,7 +33,7 @@ module Treasury
     end
 
     def locked?
-      redis.smembers(KEY).to_a.any? { |item| item == @object.to_s }
+      redis.sismember(KEY, @object)
     end
 
     def with_lock(&block)
