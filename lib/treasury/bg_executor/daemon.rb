@@ -3,6 +3,9 @@
 module Treasury
   module BgExecutor
     class Daemon
+      BGE_PROCESS_NAME = 'bg_executor_job.rb'.freeze
+      private_constant :BGE_PROCESS_NAME
+
       def initialize
         ActiveRecord::Base.clear_all_connections!
 
@@ -17,7 +20,7 @@ module Treasury
 
         wait_till_fork_allowed! do
           log ">>> Executing job :id => #{job[:id]}, :name => #{job[:job_name]}, :args => #{job[:args].inspect}"
-          Daemons.run_proc('bg_executor_job.rb', self.daemon_options) do
+          Daemons.run_proc(BGE_PROCESS_NAME, self.daemon_options) do
             begin
               self.reconnect!
               BgExecutor::Executor.new.execute_job(job)
@@ -156,7 +159,7 @@ module Treasury
       end
 
       def executors_count
-        Daemons::PidFile.find_files(pid_files_dir, 'bg_executor_job', false).size
+        Daemons::PidFile.find_files(pid_files_dir, BGE_PROCESS_NAME, false).size
       rescue Exception => e
         log "Error in executors_count"
         log e.message
@@ -181,7 +184,7 @@ module Treasury
       end
 
       def clean_pids!
-        Daemons::PidFile.find_files("#{Rails.root}/log", 'bg_executor_job', true)
+        Daemons::PidFile.find_files("#{Rails.root}/log", BGE_PROCESS_NAME, true)
       end
 
       private
