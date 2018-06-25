@@ -1,6 +1,10 @@
+# v1.6.3
+
+* 2018-06-25 [a4f273e](../../commit/a4f273e) - __(Zhidkov Denis)__ Release 1.6.3 
+* 2018-06-25 [2e34611](../../commit/2e34611) - __(Zhidkov Denis)__ fix: set correct mask to count bg executor instances and clean up pids 
+
 # v1.6.2
 
-* 2018-05-28 [d9fb099](../../commit/d9fb099) - __(Andrew N. Shalaev)__ Release v1.6.2 
 * 2018-05-28 [1e14f35](../../commit/1e14f35) - __(Andrew N. Shalaev)__ fix: pgrep should not match with self 
 https://jira.railsc.ru/browse/BPC-12530
 
