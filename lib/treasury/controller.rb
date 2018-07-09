@@ -11,7 +11,7 @@ module Treasury
     class << self
       # Start Supervisor
       def start
-        ::Redis::Mutex.with_lock(MUTEX_NAME, expire: ::Treasury::DEAULT_LOCK_EXPIRATION) do
+        ::Redis::Mutex.with_lock(MUTEX_NAME, expire: ::Treasury::DEFAULT_LOCK_EXPIRATION) do
           puts 'Starting denormalization service...'
 
           unless supervisor
@@ -31,7 +31,7 @@ module Treasury
 
       # Stop Supervisor and all Workers
       def stop
-        ::Redis::Mutex.with_lock(MUTEX_NAME, expire: ::Treasury::DEAULT_LOCK_EXPIRATION) do
+        ::Redis::Mutex.with_lock(MUTEX_NAME, expire: ::Treasury::DEFAULT_LOCK_EXPIRATION) do
           puts 'Stopping denormalization service...'
 
           unless supervisor
@@ -62,7 +62,7 @@ module Treasury
       end
 
       def stop_supervisor
-        ::Redis::Mutex.with_lock(MUTEX_NAME, expire: ::Treasury::DEAULT_LOCK_EXPIRATION) do
+        ::Redis::Mutex.with_lock(MUTEX_NAME, expire: ::Treasury::DEFAULT_LOCK_EXPIRATION) do
           unless supervisor
             puts 'No Supervisor configured.'
             return
