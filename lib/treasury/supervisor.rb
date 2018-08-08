@@ -62,7 +62,7 @@ module Treasury
         .ordered
         .select do |field|
           field.state.eql?(Fields::STATE_NEED_INITIALIZE) ||
-            field.state.eql?(Fields::STATE_IN_INITIALIZE) && process_is_alive?(field.pid)
+            (field.state.eql?(Fields::STATE_IN_INITIALIZE) && process_is_dead?(field.pid))
         end
     end
 
