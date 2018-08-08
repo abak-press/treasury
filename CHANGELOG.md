@@ -1,6 +1,10 @@
+# v1.6.4
+
+* 2018-08-08 [fbc9c02](../../commit/fbc9c02) - __(TamarinEA)__ Release 1.6.4 
+* 2018-08-08 [aaf96b2](../../commit/aaf96b2) - __(TamarinEA)__ fix: start initialize field when process not alived 
+
 # v1.6.3
 
-* 2018-06-25 [a4f273e](../../commit/a4f273e) - __(Zhidkov Denis)__ Release 1.6.3 
 * 2018-06-25 [2e34611](../../commit/2e34611) - __(Zhidkov Denis)__ fix: set correct mask to count bg executor instances and clean up pids 
 
 # v1.6.2
