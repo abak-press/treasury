@@ -1,6 +1,10 @@
+# v1.6.5
+
+* 2018-08-21 [a10c592](../../commit/a10c592) - __(TamarinEA)__ Release 1.6.5 
+* 2018-08-21 [a072bbe](../../commit/a072bbe) - __(TamarinEA)__ fix: use update of columns without nesessary event sort 
+
 # v1.6.4
 
-* 2018-08-08 [fbc9c02](../../commit/fbc9c02) - __(TamarinEA)__ Release 1.6.4 
 * 2018-08-08 [aaf96b2](../../commit/aaf96b2) - __(TamarinEA)__ fix: start initialize field when process not alived 
 
 # v1.6.3
