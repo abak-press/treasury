@@ -19,8 +19,8 @@ module Treasury
         raise ArgumentError if options[:ignore] && options[:include]
         raise ArgumentError, ':table_name is required' if options[:include] && !options[:table_name]
 
-        events = options[:events] && ([*options[:events]] & [:insert, :update, :delete])
-        events = [:insert, :update, :delete] if events.nil?
+        events = options[:events] && ([:insert, :delete, :update] & [*options[:events]])
+        events = [:insert, :delete, :update] if events.nil?
         raise ArgumentError, ':events should include :insert, :update or :delete' if events && events.empty?
 
         if options[:include].present?

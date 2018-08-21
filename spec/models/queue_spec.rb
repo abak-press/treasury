@@ -29,14 +29,29 @@ describe Treasury::Models::Queue, type: :model do
       let(:trigger_params) { {of_columns: [:user_id, :state]} }
 
       it do
-        expect(subject.gsub(/\s/,'')).to eq(<<-SQL.gsub(/\s/,''))
+        expect(subject.gsub(/\s/, '')).to eq(<<-SQL.gsub(/\s/, ''))
           CREATE TRIGGER %{trigger_name}
-          AFTER insert OR update OR delete
+          AFTER insert OR delete OR update
           OF user_id,state
           ON %{table_name}
           FOR EACH ROW
           EXECUTE PROCEDURE pgq.logutriga(%{queue_name}, 'backup');
         SQL
+      end
+
+      context 'when not all events' do
+        let(:trigger_params) { {events: [:update, :insert], of_columns: [:user_id, :state]} }
+
+        it do
+          expect(subject.gsub(/\s/, '')).to eq(<<-SQL.gsub(/\s/, ''))
+            CREATE TRIGGER %{trigger_name}
+            AFTER insert OR update
+            OF user_id,state
+            ON %{table_name}
+            FOR EACH ROW
+            EXECUTE PROCEDURE pgq.logutriga(%{queue_name}, 'backup');
+          SQL
+        end
       end
     end
   end
