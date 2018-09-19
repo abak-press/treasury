@@ -1,6 +1,11 @@
+# v1.6.6
+
+* 2018-09-18 [f941fca](../../commit/f941fca) - __(Andrew N. Shalaev)__ Release v1.6.6 
+* 2018-09-18 [4f2653c](../../commit/4f2653c) - __(Andrew N. Shalaev)__ fix: use AR#clear_active_connections! in rails 4 
+https://jira.railsc.ru/browse/BPC-11139
+
 # v1.6.5
 
-* 2018-08-21 [a10c592](../../commit/a10c592) - __(TamarinEA)__ Release 1.6.5 
 * 2018-08-21 [a072bbe](../../commit/a072bbe) - __(TamarinEA)__ fix: use update of columns without nesessary event sort 
 
 # v1.6.4
