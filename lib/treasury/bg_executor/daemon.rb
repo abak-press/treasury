@@ -95,7 +95,11 @@ module Treasury
           pool.connections.each(&:reconnect!)
         end
 
-        ActiveRecord::Base.verify_active_connections!
+        if ::Rails::VERSION::MAJOR < 4
+          ActiveRecord::Base.verify_active_connections!
+        else
+          ActiveRecord::Base.clear_active_connections!
+        end
       rescue Exception => e
         log "Could not reconnect!"
         log e.message
