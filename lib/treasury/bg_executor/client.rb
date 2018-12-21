@@ -1,4 +1,3 @@
-# coding: utf-8
 require 'digest/sha2'
 
 module Treasury
@@ -28,7 +27,11 @@ module Treasury
       end
 
       def reconnect!
-        redis.redis.client.reconnect
+        if Gem::Version.new(::Redis::VERSION) < Gem::Version.new('4')
+          redis.redis.client.reconnect
+        else
+          redis.redis._client.reconnect
+        end
       end
 
       # поставить задачу в очередь
