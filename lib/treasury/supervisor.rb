@@ -1,5 +1,3 @@
-# coding: utf-8
-
 module Treasury
   class Supervisor
     STATE_RUNNING = 'running'.freeze

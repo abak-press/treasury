@@ -1,5 +1,3 @@
-# coding: utf-8
-
 module Treasury
   class Worker
     STATE_RUNNING = 'running'.freeze
