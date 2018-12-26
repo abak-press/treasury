@@ -65,9 +65,15 @@ module Treasury
 
     def set_state(state)
       return set_session if check_state(state) && process_is_alive?(@process_object.pid)
+
       @process_object.state = state
-      set_session
-      @process_object.save!
+
+      if state == 'stopped'
+        reset_session
+      else
+        set_session
+      end
+
       logger.info "Установлен статус %s" % [quote(@process_object.state)]
     end
 
@@ -75,6 +81,13 @@ module Treasury
       @process_object.pid = pid
       @process_object.save!
       logger.info "Установлен PID %s" % [quote(@process_object.pid)]
+    end
+
+    def reset_session
+      @process_object.pid = nil
+      @process_object.save!
+
+      logger.info 'PID сброшен'
     end
 
     def save_error(error_message)

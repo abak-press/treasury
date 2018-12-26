@@ -1,3 +1,3 @@
 module Treasury
-  VERSION = '1.6.6'.freeze
+  VERSION = '1.7.0'.freeze
 end

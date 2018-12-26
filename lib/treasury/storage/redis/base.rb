@@ -117,7 +117,13 @@ module Treasury
         end
 
         def self.new_redis_session
-          ::Redis.new(Treasury.configuration.redis.client.options)
+          client = if Gem::Version.new(::Redis::VERSION) < Gem::Version.new('4')
+                     Treasury.configuration.redis.client
+                   else
+                     Treasury.configuration.redis._client
+                   end
+
+          ::Redis.new(client.options)
         end
 
         module Batch
