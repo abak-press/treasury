@@ -1,6 +1,11 @@
+# v1.7.0
+
+* 2018-12-21 [b774466](../../commit/b774466) - __(Andrew N. Shalaev)__ Release v1.7.0 
+* 2018-12-21 [b0d9c1c](../../commit/b0d9c1c) - __(Andrew N. Shalaev)__ fix: reset pid if worker stopped 
+* 2018-12-21 [49a3422](../../commit/49a3422) - __(Andrew N. Shalaev)__ feature: support for redis >= v4 
+
 # v1.6.6
 
-* 2018-09-18 [f941fca](../../commit/f941fca) - __(Andrew N. Shalaev)__ Release v1.6.6 
 * 2018-09-18 [4f2653c](../../commit/4f2653c) - __(Andrew N. Shalaev)__ fix: use AR#clear_active_connections! in rails 4 
 https://jira.railsc.ru/browse/BPC-11139
 
