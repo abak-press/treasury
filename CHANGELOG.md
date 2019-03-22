@@ -1,6 +1,10 @@
+# v1.7.1
+
+* 2019-03-22 [605136a](../../commit/605136a) - __(Andrew N. Shalaev)__ Release v1.7.1 
+* 2019-03-22 [e917963](../../commit/e917963) - __(Andrew N. Shalaev)__ feature: remove support of rails 3.2 
+
 # v1.7.0
 
-* 2018-12-21 [b774466](../../commit/b774466) - __(Andrew N. Shalaev)__ Release v1.7.0 
 * 2018-12-21 [b0d9c1c](../../commit/b0d9c1c) - __(Andrew N. Shalaev)__ fix: reset pid if worker stopped 
 * 2018-12-21 [49a3422](../../commit/49a3422) - __(Andrew N. Shalaev)__ feature: support for redis >= v4 
 
