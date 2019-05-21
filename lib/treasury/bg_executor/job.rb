@@ -31,7 +31,7 @@ module Treasury
           result = nil
           if acts_as_singleton?
             singleton_args = args.select { |k, _| singleton_scope.include?(k) }
-            result = Digest::SHA2.hexdigest(name + singleton_args.sort.to_hash.to_s)
+            result = Digest::SHA2.hexdigest(name + Hash[singleton_args.sort].to_s)
           end
 
           result

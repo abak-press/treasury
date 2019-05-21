@@ -6,3 +6,7 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'pg', '< 1.0.0'
+
+if RUBY_VERSION < '2.4'
+  gem 'mock_redis', '< 0.20.0'
+end
