@@ -1,6 +1,10 @@
+# v1.7.2
+
+* 2019-05-21 [b35776a](../../commit/b35776a) - __(Andrew N. Shalaev)__ Release v1.7.2 
+* 2019-05-21 [1541ef4](../../commit/1541ef4) - __(Andrew N. Shalaev)__ fix: replace undefined method #to_hash to Hash constructor 
+
 # v1.7.1
 
-* 2019-03-22 [605136a](../../commit/605136a) - __(Andrew N. Shalaev)__ Release v1.7.1 
 * 2019-03-22 [e917963](../../commit/e917963) - __(Andrew N. Shalaev)__ feature: remove support of rails 3.2 
 
 # v1.7.0
