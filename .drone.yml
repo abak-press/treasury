@@ -1,3 +1,11 @@
+matrix:
+  include:
+    - DOCKER_RUBY_VERSION: 2.2
+      RUBY_IMAGE_TAG: 2.2-latest
+
+    - DOCKER_RUBY_VERSION: 2.3
+      RUBY_IMAGE_TAG: 2.3-latest
+
 build:
   test:
     image: abakpress/dind-testing
@@ -30,5 +38,6 @@ build:
     pull: true
     when:
       event: push
+      branch: master
     commands:
       - release-gem
