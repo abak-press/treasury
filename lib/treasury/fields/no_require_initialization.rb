@@ -1,4 +1,3 @@
-# coding: utf-8
 module Treasury
   module Fields
     # поле не требующее инициализации

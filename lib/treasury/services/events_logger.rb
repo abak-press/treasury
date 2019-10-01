@@ -1,4 +1,3 @@
-# coding: utf-8
 require 'class_logger'
 
 module Treasury

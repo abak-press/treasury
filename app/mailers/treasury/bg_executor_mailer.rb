@@ -1,4 +1,3 @@
-# coding: utf-8
 module Treasury
   class BgExecutorMailer < ActionMailer::Base
     default from: DO_NOT_REPLY,

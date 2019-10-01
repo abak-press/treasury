@@ -1,5 +1,3 @@
-# coding: utf-8
-
 FactoryGirl.define do
   factory 'denormalization/queue', class: 'Treasury::Models::Queue' do
     sequence(:name) { |n| "name#{n}" }

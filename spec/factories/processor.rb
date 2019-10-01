@@ -1,5 +1,3 @@
-# coding: utf-8
-
 FactoryGirl.define do
   factory 'denormalization/processor', class: 'Treasury::Models::Processor' do
     association :queue, factory: 'denormalization/queue'

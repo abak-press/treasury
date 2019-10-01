@@ -1,4 +1,3 @@
-# coding: utf-8
 class CreateSchema < ActiveRecord::Migration
   def up
     ActiveRecord::Base.connection.execute "DROP SCHEMA IF EXISTS DENORMALIZATION CASCADE;"

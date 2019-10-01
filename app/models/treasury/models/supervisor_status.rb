@@ -1,4 +1,3 @@
-# coding: utf-8
 module Treasury
   module Models
     class SupervisorStatus < ActiveRecord::Base
