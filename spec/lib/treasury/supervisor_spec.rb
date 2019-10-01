@@ -5,7 +5,7 @@ describe Treasury::Supervisor do
   let(:supervisor) { described_class.new(supervisor_status) }
 
   describe '#run_initializers' do
-    before { allow(supervisor).to receive(:process_is_alive?).and_return(false) }
+    before { allow(supervisor.class).to receive(:process_is_alive?).and_return(false) }
 
     after { supervisor.send(:run_initializers) }
 
