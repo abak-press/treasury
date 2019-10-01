@@ -1,5 +1,3 @@
-# coding: utf-8
-
 describe ::Treasury::Processors::HashOperations do
   let(:dummy_class) do
     Class.new do

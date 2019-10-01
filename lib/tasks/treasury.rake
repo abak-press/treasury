@@ -1,5 +1,3 @@
-# coding: utf-8
-
 namespace :treasury do
   task stop: :environment do
     Treasury::Controller.stop

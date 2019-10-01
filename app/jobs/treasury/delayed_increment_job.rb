@@ -1,5 +1,3 @@
-# coding: utf-8
-
 module Treasury
   class DelayedIncrementJob
     include Resque::Integration

@@ -1,5 +1,3 @@
-# coding: utf-8
-
 namespace :pgq do
   desc "Перезалить схему pgq"
   task recreate_schema: :environment do

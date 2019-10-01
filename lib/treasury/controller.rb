@@ -1,5 +1,3 @@
-# coding: utf-8
-
 module Treasury
   class Controller
     SUPERVISOR_TERMINATE_TIMEOUT = 10 # seconds

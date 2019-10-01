@@ -1,4 +1,3 @@
-# coding: utf-8
 module Treasury
   module Models
     class Queue < ActiveRecord::Base

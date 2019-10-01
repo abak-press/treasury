@@ -1,5 +1,3 @@
-# coding: utf-8
-
 module Treasury
   module Pgq
     class Event

@@ -1,4 +1,3 @@
-# coding: utf-8
 namespace :denormalization do
   namespace :events_logger do
     desc 'Перенос накопленных, за сутки, данных из Redis в БД'

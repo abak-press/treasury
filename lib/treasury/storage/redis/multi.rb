@@ -1,5 +1,3 @@
-# coding: utf-8
-
 module Treasury
   module Storage
     module Redis

@@ -1,5 +1,3 @@
-# coding: utf-8
-
 module Treasury
   module BgExecutor
     class Error < StandardError; end
