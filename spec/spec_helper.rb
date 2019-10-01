@@ -15,7 +15,6 @@ end
 Combustion.initialize! :action_mailer, :active_record
 
 require 'rspec/rails'
-require 'rspec/given'
 require 'apress-rspec'
 
 redis = Treasury.configuration.redis

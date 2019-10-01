@@ -1,5 +1,3 @@
-# coding: utf-8
-
 describe ::Treasury::Processors::Base do
   # TODO: дописать тесты
   # нужно дописать тесты методов:
@@ -452,7 +450,7 @@ describe ::Treasury::Processors::Base do
 
     context 'если есть батч' do
       context 'и батч не пустой' do
-        When do
+        before do
           allow(ActiveRecord::Base).to receive(:pgq_next_batch).and_return(BATCH_ID)
           allow(subject).to receive(:process_events_batch) do |events|
             data = subject.instance_variable_get(:@data)
@@ -462,35 +460,24 @@ describe ::Treasury::Processors::Base do
         end
 
         context 'when called' do
-          Given(:storages) { [double('storage1'), double('storage2')] }
+          let(:storages) { [double('storage1'), double('storage2')] }
 
           before { allow(consumer).to receive(:storages).and_return(storages) }
 
           after { process }
 
           # порядок выполнения методов должен быть верным и колбеки должны вызываться в верном порядке
-          Then { expect(subject).to receive(:before_batch_processing).ordered }
-
-          And { storages.each { |storage| expect(storage).to receive(:source=).with(subject) } }
-
-          And { storages.each { |storage| expect(storage).to receive(:start_transaction) } }
-
-          # для каждого батча, должен быть вызван метод обработки
-          And do
+          it do
+            expect(subject).to receive(:before_batch_processing).ordered
+            storages.each { |storage| expect(storage).to receive(:source=).with(subject) }
+            storages.each { |storage| expect(storage).to receive(:start_transaction) }
             EVENTS_BATCHES_TEST.each { |batch| expect(subject).to receive(:process_events_batch).with(batch).ordered }
+            expect(subject).to receive(:write_data).ordered
+            expect(subject).to receive(:after_batch_processing).ordered
+            expect(subject).to receive(:commit_storage_transaction).ordered
+            expect(subject).to receive(:finish_batch).ordered
+            expect(subject).to receive(:data_changed).ordered
           end
-
-          And { expect(subject).to receive(:write_data).ordered }
-
-          And { expect(subject).to receive(:after_batch_processing).ordered }
-
-          # должен быть вызван метод подтверждения данных в хранилище, если записаны события
-          And { expect(subject).to receive(:commit_storage_transaction).ordered }
-
-          # всегда должен вызывать метод завершения батча
-          And { expect(subject).to receive(:finish_batch).ordered }
-
-          And { expect(subject).to receive(:data_changed).ordered }
         end
 
         context 'after call' do

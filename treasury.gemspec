@@ -36,7 +36,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'simplecov'
   spec.add_development_dependency 'combustion', '>= 0.5.3'
   spec.add_development_dependency 'appraisal'
-  spec.add_development_dependency 'rspec-given'
   spec.add_development_dependency 'shoulda-matchers'
   spec.add_development_dependency 'test-unit'
   spec.add_development_dependency 'pry-byebug'
