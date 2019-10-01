@@ -1,4 +1,3 @@
-# coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'treasury/version'
@@ -19,7 +18,7 @@ Gem::Specification.new do |spec|
 
   spec.metadata['allowed_push_host'] = 'https://gems.railsc.ru'
 
-  spec.add_runtime_dependency 'rails', '>= 4.0.13', '< 4.2'
+  spec.add_runtime_dependency 'rails', '>= 4.0.13', '< 5'
   spec.add_runtime_dependency 'daemons', '>= 1.1.9'
   spec.add_runtime_dependency 'class_logger', '>= 1.0.1'
   spec.add_runtime_dependency 'callbacks_rb', '>= 0.0.1'
