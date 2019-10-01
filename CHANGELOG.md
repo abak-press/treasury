@@ -1,6 +1,13 @@
+# v1.7.3
+
+* 2019-10-01 [e2c3b20](../../commit/e2c3b20) - __(TamarinEA)__ chore: lock some gems by ruby version 
+* 2019-09-30 [0118011](../../commit/0118011) - __(TamarinEA)__ Release 1.7.3 
+* 2019-10-01 [40f04f7](../../commit/40f04f7) - __(TamarinEA)__ chore: remove coding 
+* 2019-10-01 [d4c0e25](../../commit/d4c0e25) - __(TamarinEA)__ chore: remove rspec-given 
+* 2019-10-01 [89c3dbe](../../commit/89c3dbe) - __(TamarinEA)__ chore: test rails 4.2 
+
 # v1.7.2
 
-* 2019-05-21 [b35776a](../../commit/b35776a) - __(Andrew N. Shalaev)__ Release v1.7.2 
 * 2019-05-21 [1541ef4](../../commit/1541ef4) - __(Andrew N. Shalaev)__ fix: replace undefined method #to_hash to Hash constructor 
 
 # v1.7.1
