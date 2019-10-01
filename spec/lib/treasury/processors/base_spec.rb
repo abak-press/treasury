@@ -449,16 +449,16 @@ describe ::Treasury::Processors::Base do
     end
 
     context 'если есть батч' do
-      context 'и батч не пустой' do
-        before do
-          allow(ActiveRecord::Base).to receive(:pgq_next_batch).and_return(BATCH_ID)
-          allow(subject).to receive(:process_events_batch) do |events|
-            data = subject.instance_variable_get(:@data)
-            subject.instance_variable_set(:@data, data.merge(events.inject({}) { |r, id| r.merge(id => 1) }))
-          end
-          subject.instance_variable_set(:@events_batches, EVENTS_BATCHES_TEST)
+      before do
+        allow(ActiveRecord::Base).to receive(:pgq_next_batch).and_return(BATCH_ID)
+        allow(subject).to receive(:process_events_batch) do |events|
+          data = subject.instance_variable_get(:@data)
+          subject.instance_variable_set(:@data, data.merge(events.inject({}) { |r, id| r.merge(id => 1) }))
         end
+        subject.instance_variable_set(:@events_batches, EVENTS_BATCHES_TEST)
+      end
 
+      context 'и батч не пустой' do
         context 'when called' do
           let(:storages) { [double('storage1'), double('storage2')] }
 
@@ -497,14 +497,16 @@ describe ::Treasury::Processors::Base do
         end
       end
 
-      context 'и батч не пустой', pending: 'unimplemented' do
+      context 'и батч не пустой' do
+        before { allow(subject).to receive(:finish_batch) }
+
         it 'то для каждого батча должен быть вызван метод обработки' do
           EVENTS_BATCHES_TEST.each { |batch| subject.should_receive(:process_events_batch).with(batch) }
           subject.process
         end
 
         it 'метод должен вернуть корректное кол-во обработанных событий' do
-          subject.process.should == {:events_processed => EVENTS_BATCHES_TEST.size, :rows_written => 0}
+          subject.process.should == {events_processed: EVENTS_BATCHES_TEST.flatten.size, rows_written: 5}
         end
       end
     end
