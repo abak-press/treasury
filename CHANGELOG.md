@@ -1,7 +1,17 @@
+# v1.8.0
+
+* 2020-01-31 [5558d42](../../commit/5558d42) - __(Andrew N. Shalaev)__ Release v1.8.0 
+* 2020-01-31 [d992baf](../../commit/d992baf) - __(Andrew N. Shalaev)__ fix: type casting for ints and dates 
+https://jira.railsc.ru/browse/BPC-16113
+
+* 2019-10-01 [8fd7efe](../../commit/8fd7efe) - __(TamarinEA)__ test: stub class method when check process 
+close https://github.com/abak-press/treasury/issues/78
+
+* 2019-10-01 [3dc8094](../../commit/3dc8094) - __(TamarinEA)__ chore: restore pending test 
+
 # v1.7.3
 
 * 2019-10-01 [e2c3b20](../../commit/e2c3b20) - __(TamarinEA)__ chore: lock some gems by ruby version 
-* 2019-09-30 [0118011](../../commit/0118011) - __(TamarinEA)__ Release 1.7.3 
 * 2019-10-01 [40f04f7](../../commit/40f04f7) - __(TamarinEA)__ chore: remove coding 
 * 2019-10-01 [d4c0e25](../../commit/d4c0e25) - __(TamarinEA)__ chore: remove rspec-given 
 * 2019-10-01 [89c3dbe](../../commit/89c3dbe) - __(TamarinEA)__ chore: test rails 4.2 
