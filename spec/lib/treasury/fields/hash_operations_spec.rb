@@ -8,15 +8,35 @@ describe Treasury::Fields::HashOperations do
 
   describe "#value_as_hash" do
     let(:value_as_hash) { hash_field_class.value_as_hash(object: 123, field: :count) }
-    let(:value) { '10:100,20:200' }
-
     before do
       allow(hash_field_class).to receive(:value).and_return(value)
     end
 
-    it do
-      expect(hash_field_class).to receive(:init_accessor).with(object: 123, field: :count)
-      expect(value_as_hash).to eq('10' => 100, '20' => 200)
+    context 'when values is ints' do
+      let(:value) { '10:100,20:200' }
+
+      it do
+        expect(hash_field_class).to receive(:init_accessor).with(object: 123, field: :count)
+        expect(value_as_hash).to eq('10' => 100, '20' => 200)
+      end
+    end
+
+    context 'when values is dates' do
+      let(:value) { '10:2019-12-31,20:1999-10-01' }
+
+      it do
+        expect(hash_field_class).to receive(:init_accessor).with(object: 123, field: :count)
+        expect(value_as_hash).to eq('10' => Date.parse('2019-12-31'), '20' => Date.parse('1999-10-01'))
+      end
+    end
+
+    context 'when values is strings' do
+      let(:value) { '10:8888-12-31,20:foobar' }
+
+      it do
+        expect(hash_field_class).to receive(:init_accessor).with(object: 123, field: :count)
+        expect(value_as_hash).to eq('10' => '8888-12-31', '20' => 'foobar')
+      end
     end
   end
 end
