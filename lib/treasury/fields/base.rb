@@ -415,7 +415,7 @@ module Treasury
       end
 
       def quote(str)
-        ::ActiveRecord::Base.quote_value(str)
+        ::ActiveRecord::Base.connection.quote(str)
       end
 
       def self.extract_object(params)
