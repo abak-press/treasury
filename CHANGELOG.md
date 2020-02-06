@@ -1,6 +1,15 @@
+# v1.8.1
+
+* 2020-02-06 [e405daf](../../commit/e405daf) - __(ZhidkovDenis)__ Release 1.8.1 
+* 2020-02-06 [98522eb](../../commit/98522eb) - __(ZhidkovDenis)__ fix: fixup wrong number of args for ActiveRecord::Base.quote_value in rails >= 4.1 
+rails 4.0.x - https://github.com/rails/rails/blob/v4.0.13/activerecord/lib/active_record/sanitization.rb#L6
+rails >= 4.1.x - https://github.com/rails/rails/blob/v4.1.16/activerecord/lib/active_record/sanitization.rb#L6
+
+Т.к. все равно вызов делегируется к connection, то заменяем сразу на
+connection.quote.
+
 # v1.8.0
 
-* 2020-01-31 [5558d42](../../commit/5558d42) - __(Andrew N. Shalaev)__ Release v1.8.0 
 * 2020-01-31 [d992baf](../../commit/d992baf) - __(Andrew N. Shalaev)__ fix: type casting for ints and dates 
 https://jira.railsc.ru/browse/BPC-16113
 
