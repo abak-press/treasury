@@ -1,43 +1,67 @@
-matrix:
-  include:
-    - DOCKER_RUBY_VERSION: 2.2
-      RUBY_IMAGE_TAG: 2.2-latest
+name: build
 
-    - DOCKER_RUBY_VERSION: 2.3
-      RUBY_IMAGE_TAG: 2.3-latest
+kind: pipeline
+type: docker
 
-build:
-  test:
-    image: abakpress/dind-testing
-    privileged: true
-    volumes:
-      - /home/data/drone/images:/images
-      - /home/data/drone/gems:/bundle
-      - /home/data/drone/key_cache:/ssh_keys
+volumes:
+  - name: images
+    host:
+      path: /home/data/drone/images
+  - name: bundle
+    host:
+      path: /home/data/drone/gems
+  - name: keys
+    host:
+      path: /home/data/drone/key_cache
+
+spec_step_common: &spec_step_common
+  image: abakpress/dind-testing
+  pull: always
+  privileged: true
+  volumes:
+    - name: images
+      path: /images
+    - name: bundle
+      path: /bundle
+    - name: keys
+      path: /ssh_keys
+  commands:
+    - prepare-build
+
+    - fetch-images
+      --image whilp/ssh-agent
+      --image abakpress/ruby-app:$RUBY_IMAGE_TAG
+      --image abakpress/postgres-db:$POSTGRES_IMAGE_TAG
+
+    - dip ssh add -T -v /ssh_keys -k /ssh_keys/id_rsa
+    - dip provision
+    - dip rspec
+
+steps:
+  - name: Tests Ruby 2.2
     environment:
-      - COMPOSE_FILE_EXT=drone
-      - RAILS_ENV=test
-      - RUBY_IMAGE_TAG=2.2-latest
-      - POSTGRES_IMAGE_TAG=9.3-latest
-      - REDIS_IMAGE_TAG=3-alpine
-    commands:
-      - wrapdocker docker -v
+      COMPOSE_FILE_EXT: drone
+      DOCKER_RUBY_VERSION: 2.2
+      RUBY_IMAGE_TAG: 2.2-latest
+      POSTGRES_IMAGE_TAG: 9.6-latest
+      RAILS_ENV: test
+    <<: *spec_step_common
 
-      - fetch-images
-        --image whilp/ssh-agent
-        --image abakpress/ruby-app:$RUBY_IMAGE_TAG
-        --image abakpress/postgres-db:$POSTGRES_IMAGE_TAG
-        --image redis:$REDIS_IMAGE_TAG
+  - name: Tests Ruby 2.3
+    environment:
+      COMPOSE_FILE_EXT: drone
+      DOCKER_RUBY_VERSION: 2.3
+      RUBY_IMAGE_TAG: 2.3-latest
+      POSTGRES_IMAGE_TAG: 9.6-latest
+      RAILS_ENV: test
+    <<: *spec_step_common
 
-      - dip ssh add -T -v /ssh_keys -k /ssh_keys/id_rsa
-      - dip provision
-      - dip rspec
-
-  release:
-    image: abakpress/gem-publication
+  - name: release
+    image: abakpress/gem-publication:latest
     pull: true
     when:
       event: push
       branch: master
+      status: success
     commands:
       - release-gem

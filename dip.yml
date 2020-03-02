@@ -32,7 +32,7 @@ interaction:
 
   clean:
     service: app
-    command: rm -f Gemfile.lock gemfiles/*.gemfile.*
+    command: rm -rf Gemfile.lock gemfiles
 
 provision:
   - docker volume create --name bundler_data
