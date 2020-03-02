@@ -22,11 +22,15 @@ describe Treasury::Fields::HashOperations do
     end
 
     context 'when values is dates' do
-      let(:value) { '10:2019-12-31,20:1999-10-01' }
+      let(:value) { '10:2019-12-31,20:1999-10-01,21:2020-01-20' }
 
       it do
         expect(hash_field_class).to receive(:init_accessor).with(object: 123, field: :count)
-        expect(value_as_hash).to eq('10' => Date.parse('2019-12-31'), '20' => Date.parse('1999-10-01'))
+        expect(value_as_hash).to eq(
+          '10' => Date.parse('2019-12-31'),
+          '20' => Date.parse('1999-10-01'),
+          '21' => Date.parse('2020-01-20')
+        )
       end
     end
 
