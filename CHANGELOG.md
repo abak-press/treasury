@@ -1,6 +1,14 @@
+# v1.8.3
+
+* 2020-03-02 [fd4e712](../../commit/fd4e712) - __(Andrew N. Shalaev)__ Release v1.8.3 
+* 2020-03-02 [28a30a3](../../commit/28a30a3) - __(Andrew N. Shalaev)__ Release v1.8.2 
+* 2020-03-02 [fd07481](../../commit/fd07481) - __(Andrew N. Shalaev)__ fix: fix wrong regular expression for detecting of dates 
+https://jira.railsc.ru/browse/BPC-16078
+
+* 2020-03-02 [6a42b9c](../../commit/6a42b9c) - __(Andrew N. Shalaev)__ feature: move to new drone CI 
+
 # v1.8.1
 
-* 2020-02-06 [e405daf](../../commit/e405daf) - __(ZhidkovDenis)__ Release 1.8.1 
 * 2020-02-06 [98522eb](../../commit/98522eb) - __(ZhidkovDenis)__ fix: fixup wrong number of args for ActiveRecord::Base.quote_value in rails >= 4.1 
 rails 4.0.x - https://github.com/rails/rails/blob/v4.0.13/activerecord/lib/active_record/sanitization.rb#L6
 rails >= 4.1.x - https://github.com/rails/rails/blob/v4.1.16/activerecord/lib/active_record/sanitization.rb#L6
