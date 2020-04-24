@@ -94,7 +94,7 @@ module Treasury
         raise NotImplementedError
       end
 
-      # Protected: Добалвяет префикс хранения полю
+      # Protected: Добавляет префикс хранения полю
       #
       # field - String/Symbol - имя поля
       #

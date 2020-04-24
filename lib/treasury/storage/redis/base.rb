@@ -9,6 +9,9 @@ module Treasury
         RESET_FIELDS_BATCH_SIZE = 1000
         RESET_FIELDS_BATCH_PAUSE = Rails.env.staging? || !Rails.env.production? ? 0.seconds : 0.seconds
 
+        CURSOR_STOP_FLAG = '0'.freeze
+        private_constant :CURSOR_STOP_FLAG
+
         self.default_reset_strategy = :delete
 
         def transaction_bulk_write(data)
@@ -63,15 +66,15 @@ module Treasury
         end
 
         def hset(object, field, value)
-          write_session.hset(key(object), prepare_field(field), value)
+          write_session.hset(key(object), @params[:fields_prefix] ? prepare_field(field) : field, value)
         end
 
         def hget(object, field)
-          read_session.hget(key(object), prepare_field(field))
+          read_session.hget(key(object), @params[:fields_prefix] ? prepare_field(field) : field)
         end
 
         def hdel(object, field)
-          write_session.hdel(key(object), prepare_field(field))
+          write_session.hdel(key(object), @params[:fields_prefix] ? prepare_field(field) : field)
         end
 
         def delete(object)
@@ -83,7 +86,7 @@ module Treasury
         end
 
         def reset_hash_fields(hash_key, fields)
-          fields = fields.map { |field| prepare_field(field) }
+          fields = fields.map { |field| @params[:fields_prefix] ? prepare_field(field) : field }
           cursor = 0
 
           loop do
@@ -93,13 +96,14 @@ module Treasury
               keys.each { |key| write_session.hdel(key, fields) }
             end
 
-            break if cursor == '0'
+            break if cursor == CURSOR_STOP_FLAG
+
             sleep(RESET_FIELDS_BATCH_PAUSE)
           end
         end
 
         def object_key
-          "#{Treasury::ROOT_REDIS_KEY}:#{params[:key]}"
+          @object_key ||= "#{Treasury::ROOT_REDIS_KEY}:#{params[:key]}"
         end
 
         def key(object)
@@ -125,7 +129,7 @@ module Treasury
         end
 
         module Batch
-          PROCESSED_BATCHES_KEY = "#{Treasury::ROOT_REDIS_KEY}:processed_batches"
+          PROCESSED_BATCHES_KEY = "#{Treasury::ROOT_REDIS_KEY}:processed_batches".freeze
           PROCESSED_BATCHES_EXPIRE_AFTER = 3.days
 
           def add_batch_to_processed_list(batch_id)
@@ -143,6 +147,7 @@ module Treasury
           def processed_batch_key(batch_id)
             namespace = source_id
             namespace = "#{namespace}:" if namespace.present?
+
             "#{PROCESSED_BATCHES_KEY}:#{namespace}#{batch_id}"
           end
         end

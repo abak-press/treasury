@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Treasury
   module Fields
     class Base
@@ -52,6 +53,7 @@ module Treasury
 
       def self.create_by_class(klass, field_model = Treasury::Models::Field.find_by_field_class(klass.to_s))
         raise Errors::UnknownFieldClassError if field_model.nil?
+
         return klass.to_s.constantize.new(field_model)
       rescue => e
         log_error(e)
@@ -112,6 +114,7 @@ module Treasury
 
       def write_data(data, force = false)
         return if data.empty?
+
         storages.each do |storage|
           storage.transaction_bulk_write(data) if force || !storage.params[:write_only_processed]
         end
@@ -144,6 +147,7 @@ module Treasury
 
       def raw_value(object, field = nil, storage = nil)
         raise Errors::UninitializedFieldError unless cached_state == STATE_INITIALIZED
+
         raw_value_from_storage object, field, storage
       end
 
@@ -154,6 +158,7 @@ module Treasury
       #   nil - если не инициализировано
       def raw_value?(object, field = nil, storage = nil)
         return unless cached_state == STATE_INITIALIZED
+
         raw_value_from_storage object, field, storage
       end
 
@@ -319,6 +324,7 @@ module Treasury
 
       def before_initialize
         return unless defined?(prepare_data_block)
+
         logger.info "Выполняю блок подготовки данных:\r\n %s" % prepare_data_block
         work_connection.execute(prepare_data_block)
       end
@@ -331,12 +337,14 @@ module Treasury
 
       def after_initialize
         return unless defined?(finalize_data_block)
+
         logger.info "Выполняю блок финализации данных:\r\n %s" % finalize_data_block
         work_connection.execute(finalize_data_block)
       end
 
       def before_batch_process
         return unless defined?(prepare_batch_data_block)
+
         logger.info "Выполняю блок подготовки пачки:\r\n %s" % prepare_batch_data_block
         work_connection.execute(prepare_batch_data_block)
       end
@@ -349,13 +357,15 @@ module Treasury
 
       def after_batch_process
         return unless defined?(finalize_batch_data_block)
+
         logger.info "Выполняю блок финализации пачки:\r\n %s" % finalize_batch_data_block
         work_connection.execute(finalize_batch_data_block)
       end
 
       def lock_table(processor)
         table_name = processor.queue.table_name
-        return if table_name.blank?
+        return if table_name.nil? || table_name.empty?
+
         logger.info "Лочу таблицу #{table_name}"
         work_connection.execute <<-SQL
           LOCK TABLE #{table_name} IN SHARE MODE
@@ -384,6 +394,7 @@ module Treasury
 
       def check_active
         return true if field_model.active?
+
         logger.warn "Поле не активно"
         false
       end
@@ -391,12 +402,14 @@ module Treasury
       def check_need_initialize
         return true if check_state(STATE_NEED_INITIALIZE)
         return true if check_state(STATE_IN_INITIALIZE) && process_is_dead?(field_model.pid)
+
         logger.warn "Поле не требует иницилизации"
         false
       end
 
       def check_processors
         return true if field_model.processors.exists?
+
         logger.warn "Поле не имеет не одного процессора"
         false
       end
@@ -535,7 +548,8 @@ module Treasury
 
       def fields_storage_prefix
         prefix = field_params[:fields_storage_prefix]
-        return if prefix.blank?
+        return if prefix.nil? || prefix.empty?
+
         "#{prefix}_"
       end
     end
