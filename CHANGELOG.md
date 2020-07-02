@@ -1,6 +1,11 @@
+# v1.9.0
+
+* 2020-05-08 [e2f74a7](../../commit/e2f74a7) - __(Andrew N. Shalaev)__ Release v1.9.0 
+* 2020-04-23 [51c7d66](../../commit/51c7d66) - __(Andrew N. Shalaev)__ fix: memory optimizations 
+https://jira.railsc.ru/browse/BPC-16612
+
 # v1.8.3
 
-* 2020-03-02 [fd4e712](../../commit/fd4e712) - __(Andrew N. Shalaev)__ Release v1.8.3 
 * 2020-03-02 [28a30a3](../../commit/28a30a3) - __(Andrew N. Shalaev)__ Release v1.8.2 
 * 2020-03-02 [fd07481](../../commit/fd07481) - __(Andrew N. Shalaev)__ fix: fix wrong regular expression for detecting of dates 
 https://jira.railsc.ru/browse/BPC-16078
