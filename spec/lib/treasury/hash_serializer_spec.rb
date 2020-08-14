@@ -44,9 +44,9 @@ describe ::Treasury::HashSerializer do
     end
 
     context 'when value ok' do
-      let(:value) { '123:321,234:432' }
+      let(:value) { '123:321,234:432,100:-3' }
 
-      it { expect(deserialize).to eq('123' => 321, '234' => 432) }
+      it { expect(deserialize).to eq('123' => 321, '234' => 432, '100' => -3) }
     end
   end
 end
