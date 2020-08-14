@@ -1,6 +1,11 @@
+# v1.9.1
+
+* 2020-08-14 [495965c](../../commit/495965c) - __(Zhidkov Denis)__ Release 1.9.1 
+* 2020-08-14 [598d309](../../commit/598d309) - __(Zhidkov Denis)__ fix: type cast strings with negaive integers on hash deserialization 
+https://jira.railsc.ru/browse/BPC-17240
+
 # v1.9.0
 
-* 2020-05-08 [e2f74a7](../../commit/e2f74a7) - __(Andrew N. Shalaev)__ Release v1.9.0 
 * 2020-04-23 [51c7d66](../../commit/51c7d66) - __(Andrew N. Shalaev)__ fix: memory optimizations 
 https://jira.railsc.ru/browse/BPC-16612
 
