@@ -1,6 +1,6 @@
 module Treasury
   module HashSerializer
-    INT_PATTERN = /\A\d+\Z/.freeze
+    INT_PATTERN = /\A-?\d+\Z/.freeze
     DATE_PATTERN = /\A[1,2][0-9]{3}-(?:0[1-9]|1[0-2])-(?:[0-2][0-9]|3[0-1])\Z/.freeze
     COMMA = ','.freeze
     COLON = ':'.freeze
