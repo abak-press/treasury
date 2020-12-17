@@ -67,20 +67,33 @@ module Treasury
           if data_rows.size <= BULK_WRITE_THRESHOLD
             data_rows.each { |object, row| write(object, row) }
           else
-            to_delete = data_rows.select { |object, row| row.nil? }.keys
-            delete_rows(to_delete)
-            data_rows.delete_if { |object, row| row.nil? }
-            return unless data_rows.present?
+            to_update = {}
+            to_delete = []
 
-            ::PgTools::Merge.execute(
-              target_table: table_name,
-              source_table: source_table(data_rows),
-              selected_fields_expression: selected_fields_expression(data_rows),
-              matching_expression: matching_expression,
-              updating_expression: updating_expression(data_rows),
-              target_fields_expression: target_fields_expression(data_rows),
-              connection: connection
-            )
+            data_rows.each do |object, row|
+              if row.nil?
+                to_delete << object
+              else
+                to_update[row.keys] ||= {}
+                to_update[row.keys][object] = row
+              end
+            end
+
+            delete_rows(to_delete)
+
+            return unless to_update.present?
+
+            to_update.values.each do |similar_rows|
+              ::PgTools::Merge.execute(
+                target_table: table_name,
+                source_table: source_table(similar_rows),
+                selected_fields_expression: selected_fields_expression(similar_rows),
+                matching_expression: matching_expression,
+                updating_expression: updating_expression(similar_rows),
+                target_fields_expression: target_fields_expression(similar_rows),
+                connection: connection
+              )
+            end
           end
         end
 
