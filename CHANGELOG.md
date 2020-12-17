@@ -1,6 +1,11 @@
+# v1.9.2
+
+* 2020-12-16 [e21035d](../../commit/e21035d) - __(TamarinEA)__ Release 1.9.2 
+* 2020-12-15 [13e399c](../../commit/13e399c) - __(TamarinEA)__ fix: bulk write only similar rows 
+https://jira.railsc.ru/browse/GOODS-2638
+
 # v1.9.1
 
-* 2020-08-14 [495965c](../../commit/495965c) - __(Zhidkov Denis)__ Release 1.9.1 
 * 2020-08-14 [598d309](../../commit/598d309) - __(Zhidkov Denis)__ fix: type cast strings with negaive integers on hash deserialization 
 https://jira.railsc.ru/browse/BPC-17240
 
