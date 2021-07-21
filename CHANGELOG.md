@@ -1,6 +1,10 @@
+# v1.9.3
+
+* 2021-07-21 [cc89aa0](../../commit/cc89aa0) - __(TamarinEA)__ Release 1.9.3 
+* 2021-07-21 [e8dc29d](../../commit/e8dc29d) - __(TamarinEA)__ chore: add ruby 2.4 support 
+
 # v1.9.2
 
-* 2020-12-16 [e21035d](../../commit/e21035d) - __(TamarinEA)__ Release 1.9.2 
 * 2020-12-15 [13e399c](../../commit/13e399c) - __(TamarinEA)__ fix: bulk write only similar rows 
 https://jira.railsc.ru/browse/GOODS-2638
 
