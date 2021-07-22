@@ -32,6 +32,7 @@ spec_step_common: &spec_step_common
       --image whilp/ssh-agent
       --image abakpress/ruby-app:$RUBY_IMAGE_TAG
       --image abakpress/postgres-db:$POSTGRES_IMAGE_TAG
+      --image redis:$REDIS_IMAGE_TAG
 
     - dip ssh add -T -v /ssh_keys -k /ssh_keys/id_rsa
     - dip provision
@@ -44,6 +45,7 @@ steps:
       DOCKER_RUBY_VERSION: 2.2
       RUBY_IMAGE_TAG: 2.2-latest
       POSTGRES_IMAGE_TAG: 9.6-latest
+      REDIS_IMAGE_TAG: 4-alpine
       RAILS_ENV: test
     <<: *spec_step_common
 
@@ -53,6 +55,7 @@ steps:
       DOCKER_RUBY_VERSION: 2.3
       RUBY_IMAGE_TAG: 2.3-latest
       POSTGRES_IMAGE_TAG: 9.6-latest
+      REDIS_IMAGE_TAG: 4-alpine
       RAILS_ENV: test
     <<: *spec_step_common
 
@@ -62,6 +65,7 @@ steps:
       DOCKER_RUBY_VERSION: 2.4
       RUBY_IMAGE_TAG: 2.4-latest
       POSTGRES_IMAGE_TAG: 9.6-latest
+      REDIS_IMAGE_TAG: 4-alpine
       RAILS_ENV: test
     <<: *spec_step_common
 
