@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['isqad88@yandex.ru']
   spec.summary       = %q{Treasury - Denormalized data collection system.}
   spec.description   = %q{Denormalized data collection system.}
-  spec.homepage      = ''
+  spec.homepage      = 'https://github.com/abak-press/treasury'
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
