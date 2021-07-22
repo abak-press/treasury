@@ -1,6 +1,11 @@
+# v1.9.4
+
+* 2021-07-22 [b7eadb5](../../commit/b7eadb5) - __(TamarinEA)__ Release 1.9.4 
+* 2021-07-22 [4e01ad3](../../commit/4e01ad3) - __(TamarinEA)__ chore: add homepage 
+* 2021-07-22 [37d8cd7](../../commit/37d8cd7) - __(TamarinEA)__ chore: fetch redis image 
+
 # v1.9.3
 
-* 2021-07-21 [cc89aa0](../../commit/cc89aa0) - __(TamarinEA)__ Release 1.9.3 
 * 2021-07-21 [e8dc29d](../../commit/e8dc29d) - __(TamarinEA)__ chore: add ruby 2.4 support 
 
 # v1.9.2
