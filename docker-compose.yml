@@ -5,6 +5,7 @@ services:
     image: abakpress/ruby-app:$RUBY_IMAGE_TAG
     environment:
       - BUNDLE_PATH=/bundle/$DOCKER_RUBY_VERSION
+      - BUNDLE_APP_CONFIG=/app/.bundle
       - SSH_AUTH_SOCK=/ssh/auth/sock
       - TEST_DB_HOST=db
       - TEST_DB_NAME=docker
