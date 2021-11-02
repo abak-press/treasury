@@ -1,4 +1,6 @@
-describe Treasury::Storage::PostgreSQL::Db do
+# frozen_string_literal: true
+
+RSpec.describe Treasury::Storage::PostgreSQL::Db do
   let(:storage_params) do
     {
       table: 'test_table',
@@ -12,6 +14,31 @@ describe Treasury::Storage::PostgreSQL::Db do
 
   before do
     allow(storage).to receive(:connection).and_return(connection)
+  end
+
+  describe '#lock' do
+    before do
+      allow(connection).to receive(:execute)
+    end
+
+    context 'when not shared, e.g. has exclusize access' do
+      before do
+        allow(storage).to receive(:shared?).and_return false
+      end
+
+      it do
+        expect(connection).not_to receive(:execute).with('LOCK TABLE "test_table" IN SHARE MODE')
+        storage.lock
+      end
+    end
+
+    context 'when shared' do
+      it do
+        expect(connection).to receive(:execute).ordered.with('BEGIN')
+        expect(connection).to receive(:execute).ordered.with('LOCK TABLE "test_table" IN SHARE MODE')
+        expect { storage.lock }.not_to raise_error
+      end
+    end
   end
 
   describe '#bulk_write' do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Treasury
-  VERSION = '1.9.4'.freeze
+  VERSION = '1.10.0'
 end

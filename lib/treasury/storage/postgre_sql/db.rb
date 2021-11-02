@@ -158,10 +158,9 @@ module Treasury
         # может возникнуть ошибка: could not serialize access due to concurrent update
         def lock
           return unless shared?
+
           start_transaction
-          connection.execute <<-SQL
-            LOCK TABLE #{table_name} IN SHARE MODE
-          SQL
+          connection.execute("LOCK TABLE #{table_name} IN SHARE MODE")
         end
 
         protected

@@ -9,7 +9,7 @@ require 'shoulda-matchers'
 require 'pry-byebug'
 
 SimpleCov.start do
-  minimum_coverage 73
+  minimum_coverage 77
 end
 
 Combustion.initialize! :action_mailer, :active_record

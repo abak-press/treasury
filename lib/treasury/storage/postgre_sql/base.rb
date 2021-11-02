@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Treasury
   module Storage
     module PostgreSQL
@@ -25,19 +27,22 @@ module Treasury
       module Base
         def start_transaction
           return if transaction_started?
-          return unless storage_connection.outside_transaction?
+          return unless connection.transaction_open?
+
           internal_start_transaction
           super
         end
 
         def commit_transaction
           return unless transaction_started?
+
           internal_commit_transaction
           super
         end
 
         def rollback_transaction
           return unless transaction_started?
+
           internal_rollback_transaction
           super
         end
@@ -82,18 +87,15 @@ module Treasury
         end
 
         def internal_start_transaction
-          storage_connection.begin_db_transaction
-          storage_connection.increment_open_transactions
+          connection.begin_db_transaction
         end
 
         def internal_commit_transaction
-          storage_connection.commit_db_transaction
-          storage_connection.decrement_open_transactions
+          connection.commit_db_transaction
         end
 
         def internal_rollback_transaction
-          storage_connection.rollback_db_transaction
-          storage_connection.decrement_open_transactions
+          connection.rollback_db_transaction
         end
 
         def quote(str)
