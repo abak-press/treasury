@@ -1,6 +1,10 @@
+# v1.10.0
+
+* 2021-11-02 [7f1a9fe](../../commit/7f1a9fe) - __(Andrew N. Shalaev)__ Release v1.10.0 
+* 2021-11-02 [94c3e03](../../commit/94c3e03) - __(Andrew N. Shalaev)__ fix: remove usage of deprecated AR methods 
+
 # v1.9.4
 
-* 2021-07-22 [b7eadb5](../../commit/b7eadb5) - __(TamarinEA)__ Release 1.9.4 
 * 2021-07-22 [4e01ad3](../../commit/4e01ad3) - __(TamarinEA)__ chore: add homepage 
 * 2021-07-22 [37d8cd7](../../commit/37d8cd7) - __(TamarinEA)__ chore: fetch redis image 
 
