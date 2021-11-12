@@ -1,9 +1,15 @@
+# frozen_string_literal: true
+
 module Treasury
   module Pgq
     class Event
-      TYPE_INSERT = 'I'.freeze
-      TYPE_UPDATE = 'U'.freeze
-      TYPE_DELETE = 'D'.freeze
+      TYPE_INSERT = 'I'
+      TYPE_UPDATE = 'U'
+      TYPE_DELETE = 'D'
+
+      PARAMS_SEPARATOR = '&'
+      KV_SEPARATOR = '='
+      private_constant :PARAMS_SEPARATOR, :KV_SEPARATOR
 
       attr_accessor :id, :type, :birth_time, :txid, :ev_data, :extra1, :extra2, :extra3, :extra4
 
@@ -76,9 +82,11 @@ module Treasury
 
       def simple_parse_query(query)
         return {} if query.nil?
-        query.split('&').inject(HashWithIndifferentAccess.new) do |result, item|
-          k, v = item.split('=')
-          result.merge!(k => v)
+
+        query.split(PARAMS_SEPARATOR).each_with_object(HashWithIndifferentAccess.new) do |item, result|
+          k, v = item.split(KV_SEPARATOR)
+
+          result[k] = v
         end
       end
     end
