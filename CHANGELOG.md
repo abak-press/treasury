@@ -1,6 +1,11 @@
+# v1.11.0
+
+* 2021-12-06 [1cffdcf](../../commit/1cffdcf) - __(Andrew N. Shalaev)__ Release v1.11.0 
+* 2021-11-11 [b5e74ab](../../commit/b5e74ab) - __(Andrew N. Shalaev)__ fix: some optimizations for Pgq::Event parse 
+* 2021-11-10 [f5cdbf6](../../commit/f5cdbf6) - __(Andrew N. Shalaev)__ fix: increase idle time for decrease cpu time 
+
 # v1.10.0
 
-* 2021-11-02 [7f1a9fe](../../commit/7f1a9fe) - __(Andrew N. Shalaev)__ Release v1.10.0 
 * 2021-11-02 [94c3e03](../../commit/94c3e03) - __(Andrew N. Shalaev)__ fix: remove usage of deprecated AR methods 
 
 # v1.9.4
