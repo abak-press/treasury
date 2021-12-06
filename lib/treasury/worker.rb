@@ -5,8 +5,8 @@ module Treasury
 
     REFRESH_FIELDS_LIST_PERIOD     = Rails.env.staging? || !Rails.env.production? ? 1.minute : 1.minute
     IDLE_MAX_LAG                   = 2.minutes
-    PROCESS_LOOP_NORMAL_SLEEP_TIME = Rails.env.test? ? 0 : 0.seconds
-    PROCESS_LOOP_IDLE_SLEEP_TIME   = Rails.env.test? ? 0 : 5.seconds
+    PROCESS_LOOP_NORMAL_SLEEP_TIME = Rails.env.test? ? 0 : 0.5
+    PROCESS_LOOP_IDLE_SLEEP_TIME   = Rails.env.test? ? 0 : 5
 
     LOGGER_FILE_NAME = "#{ROOT_LOGGER_DIR}/workers/%{name}_worker".freeze
 
@@ -20,6 +20,7 @@ module Treasury
     def self.run(worker_id)
       worker = Models::Worker.find(worker_id)
       raise UnknownWorkerError if worker.nil?
+
       self.name = worker.name
       self.new(worker).process
     end
@@ -36,12 +37,15 @@ module Treasury
       logger.warn "Worker запущен"
       begin
         return unless check_active
+
         set_state(STATE_RUNNING)
         clear_last_error
         while true
           break unless check_terminate
+
           processed = process_fields
           break if !processed && Rails.env.test?
+
           idle(processed)
         end
       rescue Exception => e
@@ -99,6 +103,7 @@ module Treasury
           end
         rescue StandardError, NotImplementedError => e
           raise if Rails.env.test?
+
           logger.error "Ошибка при обработке поля #{field.title}:"
           log_error(e)
         end
