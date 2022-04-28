@@ -26,8 +26,7 @@ module Treasury
       #
       module Base
         def start_transaction
-          return if transaction_started?
-          return unless connection.transaction_open?
+          return if transaction_started? || connection.transaction_open?
 
           internal_start_transaction
           super
