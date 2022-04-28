@@ -1,6 +1,12 @@
+# v1.11.1
+
+* 2022-04-28 [6cd83da](../../commit/6cd83da) - __(Andrew N. Shalaev)__ Release v1.11.1 
+* 2022-04-28 [ae9f1c2](../../commit/ae9f1c2) - __(Andrew N. Shalaev)__ fix: remove support of ruby <2.4 and rails <4.2 
+* 2022-04-28 [ec9deb6](../../commit/ec9deb6) - __(Andrew N. Shalaev)__ fix: avoid  WARNING:  there is no transaction in progress 
+https://jira.railsc.ru/browse/BPC-20518
+
 # v1.11.0
 
-* 2021-12-06 [1cffdcf](../../commit/1cffdcf) - __(Andrew N. Shalaev)__ Release v1.11.0 
 * 2021-11-11 [b5e74ab](../../commit/b5e74ab) - __(Andrew N. Shalaev)__ fix: some optimizations for Pgq::Event parse 
 * 2021-11-10 [f5cdbf6](../../commit/f5cdbf6) - __(Andrew N. Shalaev)__ fix: increase idle time for decrease cpu time 
 
