@@ -34,7 +34,6 @@ RSpec.describe Treasury::Storage::PostgreSQL::Db do
 
     context 'when shared' do
       it do
-        expect(connection).to receive(:execute).ordered.with('BEGIN')
         expect(connection).to receive(:execute).ordered.with('LOCK TABLE "test_table" IN SHARE MODE')
         expect { storage.lock }.not_to raise_error
       end
