@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
 
   spec.metadata['allowed_push_host'] = 'https://gems.railsc.ru'
 
-  spec.add_runtime_dependency 'rails', '>= 3.1.12', '< 4.1'
+  spec.add_runtime_dependency 'rails', '>= 4.2', '< 5'
   spec.add_runtime_dependency 'daemons', '>= 1.1.9'
   spec.add_runtime_dependency 'class_logger', '>= 1.0.1'
   spec.add_runtime_dependency 'callbacks_rb', '>= 0.0.1'

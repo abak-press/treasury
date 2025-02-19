@@ -6,9 +6,9 @@ module Treasury
       self.primary_key = 'id'
 
       has_many :processors,
+               -> { order(oid: :asc) },
                class_name: 'Treasury::Models::Processor',
                dependent: :destroy,
-               order: 'processors.oid',
                inverse_of: :field
 
       belongs_to :worker, class_name: 'Treasury::Models::Worker'
