@@ -14,3 +14,4 @@ end
 gem 'json', '< 2', require: false
 # NameError: uninitialized constant Pry::Command::ExitAll при попытке выполнить require 'pry-byebug'
 gem 'pry', '< 0.13.0', require: false
+gem 'loofah', '< 2.20.0', require: false
