@@ -1,14 +1,20 @@
+# frozen_string_literal: true
+
 module Treasury
   class Worker
-    STATE_RUNNING = 'running'.freeze
-    STATE_STOPPED = 'stopped'.freeze
+    STATE_RUNNING = 'running'
+    STATE_STOPPED = 'stopped'
 
     REFRESH_FIELDS_LIST_PERIOD     = Rails.env.staging? || !Rails.env.production? ? 1.minute : 1.minute
     IDLE_MAX_LAG                   = 2.minutes
     PROCESS_LOOP_NORMAL_SLEEP_TIME = Rails.env.test? ? 0 : 0.5
     PROCESS_LOOP_IDLE_SLEEP_TIME   = Rails.env.test? ? 0 : 5
 
-    LOGGER_FILE_NAME = "#{ROOT_LOGGER_DIR}/workers/%{name}_worker".freeze
+    LOGGER_FILE_NAME = "#{ROOT_LOGGER_DIR}/workers/%{name}_worker"
+
+    COMMON_NAME = 'common'
+    ORDERS_NAME = 'orders'
+    DEV_MODE_WORKERS = [COMMON_NAME, ORDERS_NAME].freeze
 
     module Errors
       class WorkerError < StandardError; end
@@ -27,6 +33,28 @@ module Treasury
 
     def initialize(worker_info)
       @process_object = worker_info
+    end
+
+    # Public: окружение разработки?
+    #
+    # Returns Boolean.
+    #
+    def self.dev_mode?
+      return @dev_mode if defined?(@dev_mode)
+
+      @dev_mode = !::Rails.env.production? || ::Rails.env.staging?
+    end
+
+    # Public: список воркеров, доступных для запуска.
+    #
+    # Returns Array of Denormalization::Models::Worker.
+    #
+    def self.available
+      workers = ::Tresury::Models::Worker.active
+
+      return workers unless dev_mode?
+
+      Array.wrap(workers.where('name IN (?)', DEV_MODE_WORKERS).to_a.presence || workers.first)
     end
 
     def current_worker

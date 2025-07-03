@@ -74,7 +74,7 @@ module Treasury
     end
 
     def run_workers
-      avaliable_workers.each { |worker| run_worker(worker) }
+      ::Treasury::Worker.available.each { |worker| run_worker(worker) }
     end
 
     def run_worker(worker)
@@ -88,31 +88,6 @@ module Treasury
     rescue => e
       logger.error "Ошибка при запуске воркера #{quote(worker.id)}:"
       log_error(e)
-    end
-
-    # Public: Возвращает массив воркеров, доступных для запуска.
-    #
-    # Returns Array of Denormalization::Models::Worker.
-    #
-    def avaliable_workers
-      workers = Models::Worker.active
-
-      if universal_worker?
-        Array.wrap(workers.detect { |worker| worker.name.eql?('common') } || workers.first)
-      else
-        workers
-      end
-    end
-
-    # Public: Обрабатывать ли все поля, в рамках одного воркера.
-    #
-    # В окружении, отличном от production, все поля обрабатываются одним воркером.
-    #
-    # Returns Boolean.
-    #
-    def universal_worker?
-      return @universal_worker unless @universal_worker.nil?
-      @universal_worker = !Rails.env.production? || Rails.env.staging?
     end
 
     def check_active
