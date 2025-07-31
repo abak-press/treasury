@@ -83,7 +83,6 @@ module Treasury
       @client = BgExecutor::Client.instance
       @job_id = @client.queue_job!('treasury/worker', worker_id: worker.id)
 
-      logger.warn "Запущен один воркер [#{worker.name}] для обработки всех полей!" if universal_worker?
       logger.info "Запущен джоб воркер #{quote(worker.id)}, job_id = #{@job_id}"
     rescue => e
       logger.error "Ошибка при запуске воркера #{quote(worker.id)}:"
