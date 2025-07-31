@@ -50,7 +50,7 @@ module Treasury
     # Returns Array of Denormalization::Models::Worker.
     #
     def self.available
-      workers = ::Tresury::Models::Worker.active
+      workers = ::Treasury::Models::Worker.active
 
       return workers unless dev_mode?
 
