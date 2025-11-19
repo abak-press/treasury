@@ -16,3 +16,4 @@ mkmf.log
 /.idea/
 gemfiles/
 spec/internal/log
+/vendor/

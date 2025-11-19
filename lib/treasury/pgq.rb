@@ -6,15 +6,15 @@ module Treasury
     # https://github.com/markokr/skytools
 
     def pgq_create_queue(queue_name, conn)
-      conn.select_value("SELECT pgq.create_queue(#{connection.quote queue_name})").to_i
+      conn.select_value("SELECT pgq.create_queue(#{conn.quote queue_name})").to_i
     end
 
     def pgq_drop_queue(queue_name, conn)
-      conn.select_value("SELECT pgq.drop_queue(#{connection.quote queue_name})").to_i
+      conn.select_value("SELECT pgq.drop_queue(#{conn.quote queue_name})").to_i
     end
 
     def pgq_insert_event(queue_name, ev_type, ev_data, extra1 = nil, extra2 = nil, extra3 = nil, extra4 = nil)
-      result = connection.select_value(<<-SQL.squish)
+      result = connection.select_value(<<~SQL)
         SELECT pgq.insert_event(
           #{connection.quote queue_name},
           #{connection.quote ev_type},
@@ -30,24 +30,24 @@ module Treasury
     end
 
     def pgq_register_consumer(queue_name, consumer_name, conn)
-      result = conn.select_value(<<-SQL.squish)
-        SELECT pgq.register_consumer(#{connection.quote queue_name}, #{connection.quote consumer_name})
+      result = conn.select_value(<<~SQL)
+        SELECT pgq.register_consumer(#{conn.quote queue_name}, #{conn.quote consumer_name})
       SQL
 
       result.to_i
     end
 
     def pgq_unregister_consumer(queue_name, consumer_name, conn)
-      result = conn.select_value(<<-SQL.squish)
-        SELECT pgq.unregister_consumer(#{connection.quote queue_name}, #{connection.quote consumer_name})
+      result = conn.select_value(<<~SQL)
+        SELECT pgq.unregister_consumer(#{conn.quote queue_name}, #{conn.quote consumer_name})
       SQL
 
       result.to_i
     end
 
     def pgq_next_batch(queue_name, consumer_name, conn)
-      result = conn.select_value(<<-SQL.squish)
-        SELECT pgq.next_batch(#{connection.quote queue_name}, #{connection.quote consumer_name})
+      result = conn.select_value(<<~SQL)
+        SELECT pgq.next_batch(#{conn.quote queue_name}, #{conn.quote consumer_name})
       SQL
 
       result ? result.to_i : nil
@@ -58,12 +58,12 @@ module Treasury
     end
 
     def get_batch_events_by_cursor(batch_id, cursor_name, fetch_size, extra_where, conn)
-      conn.select_all(<<-SQL.squish).to_a
+      conn.select_all(<<~SQL).to_a
         SELECT * FROM pgq.get_batch_cursor(
           #{batch_id},
-          #{connection.quote(cursor_name)},
+          #{conn.quote(cursor_name)},
           #{fetch_size},
-          #{connection.quote(extra_where)}
+          #{conn.quote(extra_where)}
         )
       SQL
     end
