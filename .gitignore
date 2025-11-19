@@ -1,6 +1,5 @@
 /.bundle/
 /.yardoc
-/Gemfile.lock
 /_yardoc/
 /coverage/
 /doc/
@@ -14,6 +13,5 @@
 mkmf.log
 /.rvmrc
 /.idea/
-gemfiles/
 spec/internal/log
 /vendor/
