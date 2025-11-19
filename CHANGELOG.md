@@ -1,6 +1,14 @@
+# v1.12.0
+
+* 2025-11-19 [71f1a51](../../commit/71f1a51) - __(Andrew N. Shalaev)__ Release v1.11.2 
+* 2025-11-19 [baa085f](../../commit/baa085f) - __(Andrew N. Shalaev)__ fix: refresh gemfiles 
+* 2025-11-19 [462c4fd](../../commit/462c4fd) - __(Andrew N. Shalaev)__ Release v1.11.2 
+* 2025-11-19 [959eede](../../commit/959eede) - __(Andrew N. Shalaev)__ fix: refresh gemfiles 
+* 2025-11-19 [57ae641](../../commit/57ae641) - __(Andrew N. Shalaev)__ fix: use conn.quote instead connection.quote 
+* 2025-07-03 [6b4169a](../../commit/6b4169a) - __(Andrew N. Shalaev)__ fix: lock loofah gem 
+
 # v1.11.1
 
-* 2022-04-28 [6cd83da](../../commit/6cd83da) - __(Andrew N. Shalaev)__ Release v1.11.1 
 * 2022-04-28 [ae9f1c2](../../commit/ae9f1c2) - __(Andrew N. Shalaev)__ fix: remove support of ruby <2.4 and rails <4.2 
 * 2022-04-28 [ec9deb6](../../commit/ec9deb6) - __(Andrew N. Shalaev)__ fix: avoid  WARNING:  there is no transaction in progress 
 https://jira.railsc.ru/browse/BPC-20518
