@@ -21,7 +21,7 @@ module Treasury
 
       class_attribute :initialize_method
       class_attribute :default_batch_size
-      self.default_batch_size = 1000
+      self.default_batch_size = 10_000
 
       self.initialize_method = :offset
 
