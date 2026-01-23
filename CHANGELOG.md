@@ -1,3 +1,8 @@
+# v1.12.1
+
+* 2026-01-23 [fb88773](../../commit/fb88773) - __(Andrew N. Shalaev)__ Release v1.12.1 
+* 2026-01-23 [27dcfbe](../../commit/27dcfbe) - __(Andrew N. Shalaev)__ fix: increase default batch size for init 
+
 # v1.12.0
 
 * 2025-11-19 [71f1a51](../../commit/71f1a51) - __(Andrew N. Shalaev)__ Release v1.11.2 
